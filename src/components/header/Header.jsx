@@ -1,4 +1,14 @@
+import { Navbrand, Search, Navpills } from "../../components/index";
 import "./header.css";
-export function Header() {
-  return <></>;
+
+export function Header({ showSearchBox }) {
+  return (
+    <>
+      <nav className="nav-container d-flex">
+        <Navbrand />
+        {showSearchBox && <Search />}
+        <Navpills />
+      </nav>
+    </>
+  );
 }
