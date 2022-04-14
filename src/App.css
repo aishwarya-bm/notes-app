@@ -1,0 +1,17 @@
+:root{
+    --primary-color: rgb(251,206,231);
+    --primary-hover: rgb(240 134 200);
+    --primary-dark: rgb(222 45 155);
+}
+
+.nav-btn{
+    color: var(--black-color);
+}
+
+.btn-primary{
+    color: var(--black-color);
+}
+
+.btn-primary:hover{
+    background-color: var(--primary-hover);
+}

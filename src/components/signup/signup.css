@@ -1,20 +1,19 @@
-/* .signup-container{
-    background-image: url("../../assets/login-bg.jpg");
+.signup-body{
+    background-image: url("../../assets/login-bg1.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
     block-size: auto;
     height: 100vh;
-    padding: 2rem;
-} */
+   
+}
 
 .signup-section {
     padding: 1rem;
     background-color: var(--modal-bg);
     border-radius: 1rem;
     width: 25rem;
-    margin-top: 2rem;
 }
 
  .signup-section .user-account-link{

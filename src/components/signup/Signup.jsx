@@ -117,24 +117,6 @@ export function Signup({ setIsSignUp }) {
               ></button>
             )}
           </div>
-          <div className="d-grid">
-            <label>
-              Mobile
-              <span style={{ color: "red" }}>*</span>
-            </label>
-            <input
-              required
-              type="number"
-              placeholder="enter your mobile number"
-              name="mobile"
-              value={signupForm.mobile}
-              onChange={e => changeHandler(e)}
-            />
-
-            {userErr.phone && (
-              <div className="error-message">{userErr.phone} </div>
-            )}
-          </div>
 
           <button className="btn btn-primary">SIGNUP</button>
         </form>

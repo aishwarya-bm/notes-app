@@ -4,30 +4,25 @@ import "./home.css";
 export function Home() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main className="home-main children-center">
         <main className="home-main">
           <div className="home-banner p-rel">
             <img
-              // src="https://images.unsplash.com/photo-1526429450415-2b979b89d228?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=873&q=80"
-              // src="https://images.unsplash.com/photo-1452423668729-43a98052d3ee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzB8fG5vdGVzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              // src="https://images.unsplash.com/photo-1523289333742-be1143f6b766?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-              src="https://images.unsplash.com/photo-1527656855834-0235e41779fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+              src="https://images.unsplash.com/photo-1518665750801-883c188a660d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
               className="home-img"
+              alt="banner"
             />
 
             <div className="home-welcome p-abs">
               <div className="text-center">
-                <div style={{ fontSize: "2.5rem" }}>
-                  Welcome to <span className="banner-title">Notebook</span>
-                </div>
+                <div style={{ fontSize: "2.5rem" }}>Welcome to Notebook</div>
                 <h5>
-                  {" "}
-                  Write down all your notes and to-dos using this app, all in
-                  one place.
+                  Manage your daily tasks and workflow in a new way & boost your
+                  efficiency effortlessly.
                 </h5>
                 <div>
-                  <Link to="/notes" className="btn btn-primary">
+                  <Link to="/signup" className="btn btn-primary">
                     Get started
                   </Link>
                 </div>

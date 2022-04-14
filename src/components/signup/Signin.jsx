@@ -89,7 +89,9 @@ export function Signin({ setIsSignUp }) {
           className="btn btn-link user-account-link"
           onClick={e => handleTestLogin(e)}
         >
-          <span> Login with test credentials</span>
+          <span>
+            <u> Login with test credentials</u>
+          </span>
         </button>
         <button
           className="btn btn-link user-account-link"
