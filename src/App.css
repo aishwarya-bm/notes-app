@@ -2,6 +2,7 @@
     --primary-color: rgb(251,206,231);
     --primary-hover: rgb(240 134 200);
     --primary-dark: rgb(222 45 155);
+    --primary-transparent: rgb(251 206 231 / 48%);
 }
 
 .nav-btn{
@@ -14,4 +15,8 @@
 
 .btn-primary:hover{
     background-color: var(--primary-hover);
+}
+
+.nav-container {
+    background-color: var(--primary-transparent);
 }

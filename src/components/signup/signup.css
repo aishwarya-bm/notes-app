@@ -9,6 +9,10 @@
    
 }
 
+.signup-container{
+    margin-top:1rem
+}
+
 .signup-section {
     padding: 1rem;
     background-color: var(--modal-bg);

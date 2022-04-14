@@ -1,9 +1,4 @@
 .nav-container {
-    /* background-color: var(--transparent-darkblack);
-    border-bottom: 1px solid var(--primary-dark); */
-}
-
-.nav-container {
     width: 100%;
     margin-bottom: 0;
 }

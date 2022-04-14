@@ -4,32 +4,29 @@ import "./home.css";
 export function Home() {
   return (
     <>
-      {/* <Header /> */}
-      <main className="home-main children-center">
-        <main className="home-main">
-          <div className="home-banner p-rel">
-            <img
-              src="https://images.unsplash.com/photo-1518665750801-883c188a660d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-              className="home-img"
-              alt="banner"
-            />
+      <main className="home-main">
+        <div className="home-banner p-rel">
+          <img
+            src="https://images.unsplash.com/photo-1518665750801-883c188a660d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+            className="home-img"
+            alt="banner"
+          />
 
-            <div className="home-welcome p-abs">
-              <div className="text-center">
-                <div style={{ fontSize: "2.5rem" }}>Welcome to Notebook</div>
-                <h5>
-                  Manage your daily tasks and workflow in a new way & boost your
-                  efficiency effortlessly.
-                </h5>
-                <div>
-                  <Link to="/signup" className="btn btn-primary">
-                    Get started
-                  </Link>
-                </div>
+          <div className="home-welcome p-abs">
+            <div className="text-center">
+              <div style={{ fontSize: "2.5rem" }}>Welcome to Notebook</div>
+              <h5>
+                Manage your daily tasks and workflow in a new way & boost your
+                efficiency effortlessly.
+              </h5>
+              <div>
+                <Link to="/signup" className="btn btn-primary">
+                  Get started
+                </Link>
               </div>
             </div>
           </div>
-        </main>
+        </div>
       </main>
     </>
   );
