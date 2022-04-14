@@ -1,0 +1,14 @@
+.nav-container {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.nav-item {
+    padding: .5rem;
+}
+
+@media screen and (max-width:700px) {
+    .nav-container {
+        flex-direction: column;
+    }
+}

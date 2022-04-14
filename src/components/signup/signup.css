@@ -1,0 +1,47 @@
+.signup-body{
+    background-image: url("../../assets/login-bg1.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    block-size: auto;
+    height: 100vh;
+   
+}
+
+.signup-container{
+    margin-top:1rem
+}
+
+.signup-section {
+    padding: 1rem;
+    background-color: var(--modal-bg);
+    border-radius: 1rem;
+    width: 25rem;
+}
+
+ .signup-section .user-account-link{
+    color: var(--black-color);
+} 
+.signup-section .user-account-link{
+    background-color: transparent;
+}
+
+input[type="number"] {
+    border: 1px solid var(--shadow-color);
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    margin: 5px 0;
+    outline: none;
+    border-radius: 2px;
+}
+
+.fa-eye:hover,
+.fa-eye-slash:hover {
+    background-color: transparent;
+}
+
+button:disabled,
+button[disabled] {
+    color: #666666;
+}
