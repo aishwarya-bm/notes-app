@@ -32,4 +32,13 @@
     .btn-label{
         display: none;
     }
+
+    .sidenav-pills .active{
+       border: 1px solid var(--primary-dark);
+       border-radius: 50%;
+    }
+    .sidenav-pills .nav-btn:hover{
+        background-color: transparent;
+        
+    }
 }
