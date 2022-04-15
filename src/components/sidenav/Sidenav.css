@@ -1,0 +1,35 @@
+.sidenav-pills {
+    margin: 1rem;
+}
+
+.active-navitem{
+    color: var(--contrast-dark);
+}
+
+.sidenav-pills .nav-btn:hover{
+    background-color: var(--primary-color);
+}
+
+.sidenav-item{
+    align-items: center;
+}
+
+@media screen and (max-width:700px) {
+    .sidenav-pills {
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 0;
+        border-top: 1px solid var(--primary-dark);
+        border-bottom: 1px solid var(--primary-dark);
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 5;
+        top: auto;
+        background-color: var(--white-color);
+    }
+    .btn-label{
+        display: none;
+    }
+}

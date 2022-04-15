@@ -14,13 +14,16 @@ export function Home() {
 
           <div className="home-welcome p-abs">
             <div className="text-center">
-              <div style={{ fontSize: "2.5rem" }}>Welcome to Notebook</div>
+              <span className="home-welcome-msg">
+                Welcome to
+                <span className="home-title"> Slate</span>
+              </span>
               <h5>
-                Manage your daily tasks and workflow in a new way & boost your
-                efficiency effortlessly.
+                Chalk out your daily tasks and workflow in a new way & boost
+                your efficiency effortlessly.
               </h5>
               <div>
-                <Link to="/signup" className="btn btn-primary">
+                <Link to="/notes" className="btn btn-primary">
                   Get started
                 </Link>
               </div>

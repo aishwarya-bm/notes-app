@@ -1,4 +1,10 @@
 import "./trash.css";
+import { Header, Sidenav } from "../../components";
 export function Trash() {
-  return <></>;
+  return (
+    <>
+      <Header />
+      <Sidenav />
+    </>
+  );
 }

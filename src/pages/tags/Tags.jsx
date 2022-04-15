@@ -1,6 +1,6 @@
-import "./archives.css";
+import "./tags.css";
 import { Header, Sidenav } from "../../components";
-export function Archives() {
+export function Tags() {
   return (
     <>
       <Header />
