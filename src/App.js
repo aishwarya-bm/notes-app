@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
-import { Archives, Error, Home, Login, Notes, Trash } from "./pages";
+import { Archives, Error, Home, Login, Notes, Tags, Trash } from "pages";
 
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
         <Route path="/trash" element={<Trash />}></Route>
         <Route path="/archives" element={<Archives />}></Route>
         <Route path="/notes" element={<Notes />}></Route>
+        <Route path="/tags" element={<Tags />}></Route>
         <Route path="*" element={<Error />}></Route>
       </Routes>
       <ToastContainer />

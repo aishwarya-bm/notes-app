@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Header, Signin, Signup } from "../../components";
+import { Header, Signin, Signup } from "components";
 
 export function Login() {
   const [isSignUp, setIsSignUp] = useState(false);

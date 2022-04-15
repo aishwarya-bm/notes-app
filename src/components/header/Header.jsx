@@ -1,4 +1,4 @@
-import { Navbrand, Search, Navpills } from "../../components/index";
+import { Navbrand, Search, Navpills } from "components";
 import "./header.css";
 
 export function Header({ showSearchBox }) {

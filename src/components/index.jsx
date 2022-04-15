@@ -6,3 +6,8 @@ export { Sidenav } from "./sidenav/Sidenav";
 export { Signin } from "./signup/Signin";
 export { Signup } from "./signup/Signup";
 export { Toast } from "./toast/Toast";
+export { Editor } from "./editor/Editor";
+export { Addnote } from "./addNote/Addnote";
+export { NoteCard } from "./notecard/NoteCard";
+export { FilterModal } from "./filters/FilterModal";
+export { ColorPalette } from "./colorpalette/ColorPalette";

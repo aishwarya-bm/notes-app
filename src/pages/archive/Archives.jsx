@@ -1,4 +1,10 @@
 import "./archives.css";
+import { Header, Sidenav } from "components";
 export function Archives() {
-  return <></>;
+  return (
+    <>
+      <Header />
+      <Sidenav />
+    </>
+  );
 }

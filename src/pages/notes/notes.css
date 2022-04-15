@@ -1,0 +1,46 @@
+.notes-container{
+    margin: 1rem 1rem 1rem 10rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+
+
+.notes-header{
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.notes-details{
+    align-items: center;
+    justify-content: space-between;
+}
+
+.notes-list{
+   margin-top: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+
+@media only screen and (max-width:700px) {
+    .notes-container {
+        margin-left: 0;
+    }
+    .notes-details{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .notes-list{
+        margin-bottom: 4rem;
+        justify-content: center;
+    }
+    .notes-header{
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+    .filter-options{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

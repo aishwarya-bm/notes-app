@@ -1,6 +1,6 @@
-import "./trash.css";
+import "./tags.css";
 import { Header, Sidenav } from "components";
-export function Trash() {
+export function Tags() {
   return (
     <>
       <Header />

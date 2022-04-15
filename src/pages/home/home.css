@@ -1,5 +1,4 @@
 .home-banner{
-    /* padding: 1rem; */
     align-items: center;
 }
 
@@ -9,15 +8,23 @@
     width: 100vw;
 }
 
+.home-welcome-msg{
+    font-size: 2.5rem
+}
+
 .home-welcome {  
     top: 40%;
     left: 0;
     right: 0;
     background-color: var(--transparent-darkblack);
     font-family: 'Dancing Script',
-    cursive;
-    /* letter-spacing: 2px; */
-    
+    cursive;  
+}
+
+
+.home-title{
+    font-size: 2.5rem;
+    color: var(--primary-dark);
 }
 
 .banner-title{

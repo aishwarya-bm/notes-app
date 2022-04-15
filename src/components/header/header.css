@@ -1,6 +1,8 @@
 .nav-container {
     width: 100%;
+    box-shadow: 2px 3px 10px var(--primary-color);
     margin-bottom: 0;
+    background-color: transparent;
 }
 
 .nav-item {
