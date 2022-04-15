@@ -48,7 +48,7 @@ export function Trash() {
           </>
         ) : (
           <>
-            <div className="d-flex notes-list">
+            <div className="d-grid notes-list">
               {notes?.map((item, idx) => {
                 return (
                   <>

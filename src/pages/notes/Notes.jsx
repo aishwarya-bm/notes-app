@@ -70,7 +70,7 @@ export function Notes() {
           </div>
         </div>
         {showEditor && <Addnote setShowEditor={setShowEditor} />}
-        <div className="d-flex notes-list">
+        <div className="d-grid notes-list">
           {notes?.map((item, idx) => {
             return (
               <>

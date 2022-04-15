@@ -1,3 +1,9 @@
 .nav-right .btn:hover{
     background-color: transparent;
 }
+
+@media screen and (max-width:700px) {
+    .nav-pills{
+        margin-right: 0;
+    }
+}

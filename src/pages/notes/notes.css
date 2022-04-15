@@ -18,7 +18,10 @@
 .notes-list{
    margin-top: 1rem;
     flex-wrap: wrap;
-    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    justify-items: center;
+    justify-content: center;
+    column-gap: 1rem;
 }
 
 
@@ -32,7 +35,6 @@
     }
     .notes-list{
         margin-bottom: 4rem;
-        justify-content: center;
     }
     .notes-header{
         flex-wrap: wrap;
