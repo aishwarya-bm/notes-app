@@ -12,7 +12,7 @@
 }
 
 .card .btn-link{
-    color: var(--light-black);
+    color: var(--primary-dark);
 }
 
 .card .btn-link:hover{

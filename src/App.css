@@ -91,3 +91,11 @@ select{
 .modal-body::-webkit-scrollbar-thumb {
     background-color: var(--primary-dark);
 }
+
+.not-found{
+    margin-top: 5rem;
+}
+
+.img-not-found{
+    margin: 2rem;
+}
