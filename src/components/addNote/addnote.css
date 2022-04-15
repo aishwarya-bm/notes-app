@@ -1,6 +1,9 @@
 
 .editor-component{
     margin: 1rem 5rem;
+    padding: 1rem;
+    box-shadow: 0px 0px 8px var(--dark-gray);
+    border-radius: 5px;
 }
 
 .quill-editor{
