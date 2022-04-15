@@ -1,8 +1,10 @@
 .card-badge{
     color: black;
-    top: -1px;  
+    top: 0px;  
+    left: 0px;
     background-color: var( --yellow-color);
     border-bottom-right-radius: 10px;
+    border-top-left-radius: 5px;
 }
 
 .card-header{
