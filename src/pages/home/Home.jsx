@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Header } from "../../components";
 import "./home.css";
 export function Home() {
   return (

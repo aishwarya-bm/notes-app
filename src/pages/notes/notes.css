@@ -7,6 +7,7 @@
 
 .notes-header{
     justify-content: space-between;
+    padding: 1rem;
 }
 
 .notes-details{
@@ -34,8 +35,12 @@
         justify-content: center;
     }
     .notes-header{
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+    .filter-options{
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }

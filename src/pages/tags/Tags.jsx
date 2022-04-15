@@ -1,5 +1,5 @@
 import "./tags.css";
-import { Header, Sidenav } from "../../components";
+import { Header, Sidenav } from "components";
 export function Tags() {
   return (
     <>

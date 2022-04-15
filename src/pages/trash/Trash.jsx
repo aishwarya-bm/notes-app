@@ -1,5 +1,5 @@
 import "./trash.css";
-import { Header, Sidenav } from "../../components";
+import { Header, Sidenav } from "components";
 export function Trash() {
   return (
     <>

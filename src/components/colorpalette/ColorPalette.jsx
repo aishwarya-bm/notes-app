@@ -1,14 +1,18 @@
 import "./colorpalette.css";
 export function ColorPalette() {
+  const shades = [
+    "card-shade-1",
+    "card-shade-2",
+    "card-shade-3",
+    "card-shade-4",
+    "card-shade-5",
+  ];
   return (
     <>
       <div className="children-center grid-gap card-palette">
-        <div className="shade-ball card-shade-1"></div>
-        <div className="shade-ball card-shade-2"></div>
-        <div className="shade-ball card-shade-4"></div>
-        <div className="shade-ball card-shade-3"></div>
-
-        <div className="shade-ball card-shade-5"></div>
+        {shades.map(item => (
+          <div className={`shade-ball ${item}`}></div>
+        ))}
       </div>
     </>
   );

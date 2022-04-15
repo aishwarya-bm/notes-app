@@ -9,15 +9,15 @@
    
 }
 
-.signup-container{
-    margin-top:1rem
+.signup-body .nav-container{
+    box-shadow: none;
 }
 
 .signup-section {
     padding: 1rem;
-    background-color: var(--modal-bg);
     border-radius: 1rem;
     width: 25rem;
+    box-shadow: 0 0 5px var(--primary-dark);
 }
 
  .signup-section .user-account-link{
@@ -44,4 +44,13 @@ input[type="number"] {
 button:disabled,
 button[disabled] {
     color: #666666;
+}
+
+@media screen and (max-width:700px) {
+    .signup-section {
+        box-shadow: none;
+    }
+    .signup-body .nav-container{
+        box-shadow: 2px 3px 10px var(--primary-color);
+    }
 }

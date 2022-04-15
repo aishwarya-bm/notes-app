@@ -48,9 +48,8 @@ select{
 .card{
     background-color: transparent;
     width: 20rem;
-    border: 1px solid var(--grey-bg);
     min-width: 16rem;
-    box-shadow: none;
+    box-shadow: 0px 0px 8px var(--dark-gray);
 }
 
 .modal-container{

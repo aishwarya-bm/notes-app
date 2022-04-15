@@ -1,5 +1,4 @@
 import "./filtermodal.css";
-import { MdNewLabel, MdLabelOff } from "react-icons/md";
 export function FilterModal({ setShowFilterModal }) {
   const labels = ["label1", "label2", "label3", "label4"];
   return (

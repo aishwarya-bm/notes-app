@@ -5,7 +5,7 @@ import {
   NoteCard,
   Search,
   Sidenav,
-} from "../../components";
+} from "components";
 import "./notes.css";
 import { MdAdd } from "react-icons/md";
 import { useState } from "react";
@@ -45,7 +45,7 @@ export function Notes() {
       <Header />
       <Sidenav />
       <div className="notes-container">
-        <div className="d-flex notes-header">
+        <div className="d-flex grid-gap notes-header">
           <button
             className="btn btn-primary"
             onClick={() => setShowEditor(true)}
@@ -55,7 +55,7 @@ export function Notes() {
             </span>
           </button>
 
-          <div className="d-flex grid-gap">
+          <div className="d-flex grid-gap filter-options">
             <button
               className="btn btn-light children-center"
               onClick={() => setShowFilterModal(true)}

@@ -1,10 +1,10 @@
+import { Editor } from "components";
 import { useState } from "react";
-import { Editor } from "../../components";
+
 import { LabelsModal } from "../labels-modal/LabelsModal";
 import "./addnote.css";
 export function Addnote({ setShowEditor }) {
   const [showLabelsModal, setShowLabelsModal] = useState(false);
-
   return (
     <>
       <div className="editor-component children-stacked">
