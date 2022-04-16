@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLogin } from "../../contexts";
+import { loginUser } from "../../contexts/login-context/login-utils";
 import "./signup.css";
 export function Signin({ setIsSignUp }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -7,7 +9,7 @@ export function Signin({ setIsSignUp }) {
     email: "",
     password: "",
   });
-
+  const { dispatchUser } = useLogin();
   const navigate = useNavigate();
 
   const changeHandler = event => {
@@ -26,10 +28,16 @@ export function Signin({ setIsSignUp }) {
 
   const handleLoginSubmit = e => {
     e.preventDefault();
+    loginUser(loginForm, dispatchUser, navigate);
   };
 
   const handleTestLogin = e => {
     e.preventDefault();
+    loginUser(
+      { email: "test@gmail.com", password: "test" },
+      dispatchUser,
+      navigate
+    );
   };
 
   return (
