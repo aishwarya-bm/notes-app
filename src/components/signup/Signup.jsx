@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLogin } from "contexts";
+import { createUser } from "contexts/login-context/login-utils";
 import "./signup.css";
 
 export function Signup({ setIsSignUp }) {
@@ -8,14 +10,13 @@ export function Signup({ setIsSignUp }) {
     lastname: "",
     email: "",
     password: "",
-    mobile: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [userErr, setUserErr] = useState({
-    phone: "",
     email: "",
   });
   const navigate = useNavigate();
+  const { dispatchUser } = useLogin();
 
   const changeHandler = event => {
     event.preventDefault();
@@ -33,6 +34,7 @@ export function Signup({ setIsSignUp }) {
 
   const handleSignupSubmit = e => {
     e.preventDefault();
+    createUser(signupForm, setUserErr, setSignupForm, dispatchUser, navigate);
   };
 
   return (

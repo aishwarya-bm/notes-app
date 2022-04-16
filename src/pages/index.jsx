@@ -5,3 +5,4 @@ export { Login } from "./login/Login";
 export { Notes } from "./notes/Notes";
 export { Trash } from "./trash/Trash";
 export { Tags } from "./tags/Tags";
+export { Profile } from "./profile/Profile";
