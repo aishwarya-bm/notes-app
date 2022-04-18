@@ -2,7 +2,8 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./editor.css";
 
-export function Editor() {
+export function Editor(props) {
+  const { value, setValue } = props;
   const formats = [
     "header",
     "font",
@@ -45,10 +46,11 @@ export function Editor() {
       <ReactQuill
         theme="snow"
         placeholder="Add a note"
-        //   value={value}
-        //   onChange={setValue}
+        value={value}
+        onChange={setValue}
         formats={formats}
         modules={modules}
+        {...props}
       />
     </>
   );

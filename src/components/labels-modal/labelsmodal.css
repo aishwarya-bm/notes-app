@@ -6,7 +6,6 @@
 
 .label-items .add-tag-btn{
     margin: 0;
-    color: var(--light-black);
 }
 
 .label-items .add-tag-btn:hover{
@@ -14,4 +13,11 @@
     background-color: transparent;
 }
 
+.label-selected{
+    color: var(--primary-dark);
+}
+
+.label-unselected{
+    color: var(--light-black);
+}
 
