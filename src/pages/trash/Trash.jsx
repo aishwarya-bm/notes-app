@@ -1,40 +1,16 @@
 import "./trash.css";
 import { Header, NoteCard, Sidenav } from "components";
 import { useState } from "react";
+import { useNotes } from "contexts";
 export function Trash() {
-  const [notes, showNotes] = useState([
-    {
-      title: "note 1",
-      body: "description for note 1",
-      priority: "high",
-      label: "work",
-    },
-    {
-      title: "note 2",
-      body: "description for note 2",
-      priority: "medium",
-      label: "home",
-    },
-    {
-      title: "note 3",
-      body: "description for note 3",
-      priority: "low",
-      label: "other",
-    },
-    {
-      title: "note 4",
-      body: "description for note 4",
-      priority: "low",
-      label: "other",
-    },
-  ]);
+  const { trash } = useNotes();
   return (
     <>
       <Header />
       <Sidenav />
       <div className="notes-container">
-        <h3 className="text-center">Trash - {notes.length}</h3>
-        {notes.length === 0 ? (
+        <h3 className="text-center">Trash - {trash.length}</h3>
+        {trash.length === 0 ? (
           <>
             <div className="not-found">
               <h5 className="text-center">Your have no items in trash!</h5>
@@ -49,10 +25,12 @@ export function Trash() {
         ) : (
           <>
             <div className="d-grid notes-list">
-              {notes?.map((item, idx) => {
+              {trash?.map((item, idx) => {
                 return (
                   <>
-                    <NoteCard item={item} />
+                    <div key={item._id}>
+                      <NoteCard item={item} />
+                    </div>
                   </>
                 );
               })}

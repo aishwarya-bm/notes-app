@@ -1,17 +1,35 @@
-import { useEffect, useState } from "react";
 import "./labelsmodal.css";
-import { useNavigate } from "react-router-dom";
-import { MdNewLabel, MdLabelOff } from "react-icons/md";
+import { MdNewLabel, MdLabel } from "react-icons/md";
+import { useNotes } from "contexts";
 
 export function LabelsModal({ setShowLabelsModal }) {
-  const [playlistName, setPlaylistName] = useState("");
-
+  let { note_editor, dispatchNotes } = useNotes();
+  let { labels: note_labels } = note_editor;
   const labels = ["label1", "label2", "label3", "label4"];
 
-  const navigate = useNavigate();
+  const isLabelInNote = item =>
+    note_labels?.find(i => i === item) ? true : false;
 
-  const playListNameChangeHandler = event => {
-    setPlaylistName(event.target.value);
+  const addLabels = item => {
+    note_labels?.push(item);
+    dispatchNotes({
+      type: "SET_NOTE_EDITOR",
+      payload: {
+        key: "labels",
+        value: note_labels,
+      },
+    });
+  };
+
+  const removeLabels = item => {
+    note_labels = note_labels.filter(l => l !== item);
+    dispatchNotes({
+      type: "SET_NOTE_EDITOR",
+      payload: {
+        key: "labels",
+        value: note_labels,
+      },
+    });
   };
 
   return (
@@ -25,12 +43,28 @@ export function LabelsModal({ setShowLabelsModal }) {
             <div className="modal-body">
               <ul className="d-flex children-stacked grid-gap">
                 {labels &&
-                  labels?.map(item => {
+                  labels?.map((item, idx) => {
                     return (
-                      <li className="d-flex label-items">
-                        <button className="btn btn-link add-tag-btn">
-                          <MdNewLabel size={25} />
-                        </button>
+                      <li className="d-flex label-items" key={idx}>
+                        {isLabelInNote(item) ? (
+                          <button
+                            title="click to unselect"
+                            className="btn btn-link add-tag-btn label-selected"
+                            onClick={() => {
+                              removeLabels(item);
+                            }}
+                          >
+                            <MdLabel size={25} />
+                          </button>
+                        ) : (
+                          <button
+                            title="click to select"
+                            className="btn btn-link add-tag-btn label-unselected"
+                            onClick={() => addLabels(item)}
+                          >
+                            <MdNewLabel size={25} />
+                          </button>
+                        )}
                         {item}
                       </li>
                     );

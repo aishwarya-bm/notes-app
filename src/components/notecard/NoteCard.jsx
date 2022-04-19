@@ -7,40 +7,93 @@ import {
 } from "react-icons/md";
 import { useState } from "react";
 import "./notecard.css";
-import { ColorPalette } from "../colorpalette/ColorPalette";
+import { ColorPalette } from "components";
+import { moveNoteToTrash } from "utils/notes-utils";
+import { useLogin, useNotes } from "contexts";
+import { useNavigate } from "react-router-dom";
 
-export function NoteCard({ item }) {
+export function NoteCard({ item, setShowEditor }) {
   const [showPalette, setShowPalette] = useState(false);
+
+  const { isLoggedIn } = useLogin();
+  const { dispatchNotes } = useNotes();
+  const navigate = useNavigate();
+
+  const changeCardColor = item => {
+    const { _id, title, cardColor, priority, body, labels } = item;
+    setShowPalette(prev => !prev);
+    dispatchNotes({
+      type: "EDIT_NOTE",
+      payload: item,
+    });
+  };
   return (
     <>
-      <div className="card children-stacked p-rel">
-        <div className="card-badge">{item.priority}</div>
+      <div
+        className="card children-stacked p-rel"
+        key={_id}
+        style={{ backgroundColor: cardColor }}
+      >
+        <div className="card-badge">{priority}</div>
 
         <div className="card-header d-flex">
-          <div className="card-title">{item.title} </div>
+          <div className="card-title">{title} </div>
           <button className="btn btn-link">
             <MdOutlinePushPin size={25} />
           </button>
         </div>
         <div className="card-content">
-          <div> {item.body}</div>
-          <div>Created at:</div>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: body,
+            }}
+          ></p>
+
+          <div className="d-flex gap-sm">
+            {labels?.map(label => {
+              return <span className="text-sm card-label">{label}</span>;
+            })}
+          </div>
+          <div className="text-sm">Created at: {createdAt}</div>
         </div>
-        {showPalette && <ColorPalette />}
+        {showPalette && (
+          <ColorPalette
+            isEdit={true}
+            setShowEditor={setShowEditor}
+            note={item}
+            setShowPalette={setShowPalette}
+          />
+        )}
         <div className="card-action children-center">
           <button
             className="btn btn-link"
-            onClick={() => setShowPalette(prev => !prev)}
+            onClick={() => {
+              changeCardColor(item);
+            }}
           >
             <MdPalette size={20} />
           </button>
-          <button className="btn btn-link">
+          <button
+            className="btn btn-link"
+            onClick={() => {
+              setShowEditor(true);
+              dispatchNotes({
+                type: "EDIT_NOTE",
+                payload: item,
+              });
+            }}
+          >
             <MdEdit size={20} />
           </button>
           <button className="btn btn-link">
             <MdArchive size={20} />
           </button>
-          <button className="btn btn-link">
+          <button
+            className="btn btn-link"
+            onClick={() => {
+              moveNoteToTrash(isLoggedIn, _id, dispatchNotes, navigate);
+            }}
+          >
             <MdDelete size={20} />
           </button>
         </div>

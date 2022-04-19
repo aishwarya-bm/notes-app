@@ -10,36 +10,19 @@ import "./notes.css";
 import { MdAdd } from "react-icons/md";
 import { useState } from "react";
 import { FcFilledFilter } from "react-icons/fc";
+import { useEffect } from "react";
+import { getAllNotes } from "utils/notes-utils";
+import { useLogin, useNotes } from "contexts";
+import { useNavigate } from "react-router-dom";
 
 export function Notes() {
   const [showEditor, setShowEditor] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
-  const [notes, showNotes] = useState([
-    {
-      title: "note 1",
-      body: "description for note 1",
-      priority: "high",
-      label: "work",
-    },
-    {
-      title: "note 2",
-      body: "description for note 2",
-      priority: "medium",
-      label: "home",
-    },
-    {
-      title: "note 3",
-      body: "description for note 3",
-      priority: "low",
-      label: "other",
-    },
-    {
-      title: "note 4",
-      body: "description for note 4",
-      priority: "low",
-      label: "other",
-    },
-  ]);
+  const { isLoggedIn } = useLogin();
+  const navigate = useNavigate();
+  const { notes, dispatchNotes } = useNotes();
+
+  useEffect(() => getAllNotes(isLoggedIn, dispatchNotes, navigate), []);
   return (
     <>
       <Header />
@@ -61,7 +44,7 @@ export function Notes() {
               onClick={() => setShowFilterModal(true)}
             >
               <span className="children-center">
-                <FcFilledFilter size={25} />
+                <FcFilledFilter size={20} />
                 Filter
               </span>
             </button>
@@ -70,16 +53,36 @@ export function Notes() {
           </div>
         </div>
         {showEditor && <Addnote setShowEditor={setShowEditor} />}
-        <div className="d-grid notes-list">
-          {notes?.map((item, idx) => {
-            return (
-              <>
-                <NoteCard item={item} />
-              </>
-            );
-          })}
-        </div>
 
+        {notes.length === 0 ? (
+          <>
+            <div className="not-found">
+              <h5 className="text-center">You have not added any notes yet!</h5>
+              <div className="d-flex children-center img-not-found">
+                <img
+                  src="https://cdn.iconscout.com/icon/premium/png-128-thumb/blank-book-2923956-2445975.png"
+                  alt="archive"
+                />
+              </div>
+            </div>
+          </>
+        ) : (
+          <ul className="d-grid notes-list">
+            {notes?.map((item, idx) => {
+              return (
+                <>
+                  <li key={idx} className="list-no-bullet">
+                    <NoteCard
+                      item={item}
+                      showEditor={showEditor}
+                      setShowEditor={setShowEditor}
+                    />
+                  </li>
+                </>
+              );
+            })}
+          </ul>
+        )}
         {showFilterModal && (
           <FilterModal setShowFilterModal={setShowFilterModal} />
         )}

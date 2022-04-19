@@ -20,9 +20,22 @@
     color: var(--black-color);
 }
 
+.section-label-palette{
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-selected-labels{
+    flex-wrap: wrap;
+}
+
+.palette{
+    margin-bottom: 1rem;
+}
+
 @media only screen and (max-width:700px) {
     .editor-component{
         margin:1rem 1rem 4rem 1rem
     }
-
 }

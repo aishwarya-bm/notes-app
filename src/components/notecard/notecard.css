@@ -15,10 +15,22 @@
 
 .card .btn-link{
     color: var(--primary-dark);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.card .card-content{
+    padding-bottom: 0;
 }
 
 .card .btn-link:hover{
     background-color: var(--primary-color);
     color: var(--black-color);
     border-radius: 50%;
+}
+
+.card-label{
+    background-color: var(--grey-bg);
+    padding: .15rem .3rem;
+    border-radius: 10px;
 }
