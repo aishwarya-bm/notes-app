@@ -160,12 +160,14 @@ const modifyNote = async (
           type: "CREATE_NOTE",
           payload: response.data.notes,
         });
-        setShowEditor(false);
-        if (!isOnlyColorChange)
+
+        if (!isOnlyColorChange) {
+          setShowEditor(false);
           Toast({
             message: "Modified note.",
             type: "success",
           });
+        }
       } else {
         Toast({
           message: "Some error occured, please try again later",
@@ -188,4 +190,93 @@ const modifyNote = async (
   }
 };
 
-export { getAllNotes, createNote, moveNoteToTrash, modifyNote };
+const deleteNote = async (isLoggedIn, id, dispatchNotes, navigate) => {
+  if (isLoggedIn) {
+    const path = `/api/notes/${id}`;
+    try {
+      const response = await axios.delete(path, {
+        headers: {
+          authorization: localStorage.getItem("userToken"),
+        },
+      });
+      if (response.status === 200) {
+        dispatchNotes({
+          type: "DELETE_NOTE",
+          payload: { notes: response.data.notes, delete_id: id },
+        });
+        Toast({
+          message: "Note deleted successfully",
+          type: "success",
+        });
+      } else {
+        Toast({
+          message: "Some error occured, please try again later",
+          type: "error",
+        });
+      }
+    } catch (err) {
+      Toast({
+        message: "Some error occured, please try again later",
+        type: "error",
+      });
+    }
+  } else {
+    navigate("/signup");
+    Toast({
+      message: "Please login to continue.",
+      type: "warning",
+    });
+  }
+};
+
+const restoreFromTrash = async (isLoggedIn, id, dispatchNotes, navigate) => {
+  if (isLoggedIn) {
+    const path = `/api/archives/restore/${id}`;
+    try {
+      const response = await axios.post(
+        path,
+        {},
+        {
+          headers: {
+            authorization: localStorage.getItem("userToken"),
+          },
+        }
+      );
+      if (response.status === 200) {
+        dispatchNotes({
+          type: "RESTORE_NOTE",
+          payload: { notes: response.data.notes, restore_id: id },
+        });
+        Toast({
+          message: "Note deleted successfully",
+          type: "success",
+        });
+      } else {
+        Toast({
+          message: "Some error occured, please try again later",
+          type: "error",
+        });
+      }
+    } catch (err) {
+      Toast({
+        message: "Some error occured, please try again later",
+        type: "error",
+      });
+    }
+  } else {
+    navigate("/signup");
+    Toast({
+      message: "Please login to continue.",
+      type: "warning",
+    });
+  }
+};
+
+export {
+  getAllNotes,
+  createNote,
+  moveNoteToTrash,
+  modifyNote,
+  deleteNote,
+  restoreFromTrash,
+};

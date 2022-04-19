@@ -1,6 +1,5 @@
 import "./trash.css";
 import { Header, NoteCard, Sidenav } from "components";
-import { useState } from "react";
 import { useNotes } from "contexts";
 export function Trash() {
   const { trash } = useNotes();
@@ -28,8 +27,8 @@ export function Trash() {
               {trash?.map((item, idx) => {
                 return (
                   <>
-                    <div key={item._id}>
-                      <NoteCard item={item} />
+                    <div key={"trash" + idx}>
+                      <NoteCard item={item} isTrashPage={true} />
                     </div>
                   </>
                 );
