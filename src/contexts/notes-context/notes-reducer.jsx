@@ -1,3 +1,6 @@
+import dayjs from "dayjs";
+
+const formatDate = () => dayjs().format("YYYY-MM-DDTHH:mm:ssZ");
 export default function notesReducer(state, { type, payload }) {
   switch (type) {
     case "SET_NOTE_EDITOR": {
@@ -31,7 +34,14 @@ export default function notesReducer(state, { type, payload }) {
       return {
         ...state,
         notes: payload,
-        note_editor: {},
+        note_editor: {
+          title: "",
+          body: "",
+          priority: "medium",
+          labels: [],
+          createdAt: formatDate(),
+          cardColor: "white",
+        },
       };
     }
 
