@@ -10,6 +10,7 @@ export function Addnote({ setShowEditor }) {
   const [showLabelsModal, setShowLabelsModal] = useState(false);
   const { isLoggedIn } = useLogin();
   const { note_editor, dispatchNotes } = useNotes();
+  const { _id, title, cardColor, priority, body } = note_editor;
   const navigate = useNavigate();
 
   const handleNewNoteChange = ({ target }) => {
@@ -20,7 +21,7 @@ export function Addnote({ setShowEditor }) {
   };
 
   const saveNotes = () => {
-    if (note_editor._id) {
+    if (_id) {
       modifyNote(
         isLoggedIn,
         note_editor,
@@ -50,7 +51,7 @@ export function Addnote({ setShowEditor }) {
     <>
       <div
         className="editor-component children-stacked"
-        style={{ backgroundColor: note_editor.cardColor }}
+        style={{ backgroundColor: cardColor }}
       >
         <div className="d-flex notes-details">
           <label>
@@ -58,7 +59,7 @@ export function Addnote({ setShowEditor }) {
             <input
               type="text"
               name="title"
-              value={note_editor.title}
+              value={title}
               onChange={e => handleNewNoteChange(e)}
             />
           </label>
@@ -66,7 +67,7 @@ export function Addnote({ setShowEditor }) {
             <b> Priority:</b> &nbsp;
             <select
               name="priority"
-              value={note_editor.priority}
+              value={priority}
               onChange={e => handleNewNoteChange(e)}
             >
               <option value="high">High</option>
@@ -79,12 +80,12 @@ export function Addnote({ setShowEditor }) {
             className="btn btn-link"
             onClick={() => setShowLabelsModal(true)}
           >
-            {note_editor._id ? "Modify tags" : "Add tags"}
+            {_id ? "Modify tags" : "Add tags"}
           </button>
         </div>
         <section className="quill-editor">
           <Editor
-            value={note_editor.body}
+            value={body}
             setValue={e =>
               dispatchNotes({
                 type: "SET_NOTE_EDITOR",

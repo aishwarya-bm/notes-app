@@ -20,6 +20,7 @@ export function NoteCard({ item, setShowEditor }) {
   const navigate = useNavigate();
 
   const changeCardColor = item => {
+    const { _id, title, cardColor, priority, body, labels } = item;
     setShowPalette(prev => !prev);
     dispatchNotes({
       type: "EDIT_NOTE",
@@ -30,13 +31,13 @@ export function NoteCard({ item, setShowEditor }) {
     <>
       <div
         className="card children-stacked p-rel"
-        key={item._id}
-        style={{ backgroundColor: item.cardColor }}
+        key={_id}
+        style={{ backgroundColor: cardColor }}
       >
-        <div className="card-badge">{item.priority}</div>
+        <div className="card-badge">{priority}</div>
 
         <div className="card-header d-flex">
-          <div className="card-title">{item.title} </div>
+          <div className="card-title">{title} </div>
           <button className="btn btn-link">
             <MdOutlinePushPin size={25} />
           </button>
@@ -44,16 +45,16 @@ export function NoteCard({ item, setShowEditor }) {
         <div className="card-content">
           <p
             dangerouslySetInnerHTML={{
-              __html: item.body,
+              __html: body,
             }}
           ></p>
 
           <div className="d-flex gap-sm">
-            {item.labels?.map(label => {
+            {labels?.map(label => {
               return <span className="text-sm card-label">{label}</span>;
             })}
           </div>
-          <div className="text-sm">Created at: {item.createdAt}</div>
+          <div className="text-sm">Created at: {createdAt}</div>
         </div>
         {showPalette && (
           <ColorPalette
@@ -90,7 +91,7 @@ export function NoteCard({ item, setShowEditor }) {
           <button
             className="btn btn-link"
             onClick={() => {
-              moveNoteToTrash(isLoggedIn, item._id, dispatchNotes, navigate);
+              moveNoteToTrash(isLoggedIn, _id, dispatchNotes, navigate);
             }}
           >
             <MdDelete size={20} />
