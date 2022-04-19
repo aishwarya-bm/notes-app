@@ -1,6 +1,8 @@
+import { useLogin } from "contexts";
 import { Link } from "react-router-dom";
 import "./home.css";
 export function Home() {
+  const { isLoggedIn } = useLogin();
   return (
     <>
       <main className="home-main">
@@ -22,7 +24,10 @@ export function Home() {
                 your efficiency effortlessly.
               </h5>
               <div>
-                <Link to="/notes" className="btn btn-primary">
+                <Link
+                  to={isLoggedIn ? "/notes" : "/signup"}
+                  className="btn btn-primary"
+                >
                   Get started
                 </Link>
               </div>

@@ -1,5 +1,9 @@
+import { useLogin, useNotes } from "contexts";
+import { useNavigate } from "react-router-dom";
+import { modifyNote } from "utils/notes-utils";
 import "./colorpalette.css";
-export function ColorPalette({ newNote, setNewNote }) {
+export function ColorPalette({ isEdit, setShowEditor, note, setShowPalette }) {
+  const { note_editor, dispatchNotes } = useNotes();
   const shadeNames = [
     "card-shade-1",
     "card-shade-2",
@@ -16,6 +20,31 @@ export function ColorPalette({ newNote, setNewNote }) {
     "var(--pastel-shade-red)",
   ];
 
+  const { isLoggedIn } = useLogin();
+  const setNewColorOnCard = color => {
+    if (isEdit) {
+      const noteModified = {
+        ...note_editor,
+        cardColor: color,
+      };
+      modifyNote(
+        isLoggedIn,
+        noteModified,
+        dispatchNotes,
+        navigate,
+        setShowEditor,
+        true
+      );
+      setShowPalette(false);
+    } else {
+      dispatchNotes({
+        type: "SET_NOTE_EDITOR",
+        payload: { key: "cardColor", value: color },
+      });
+    }
+  };
+
+  const navigate = useNavigate();
   return (
     <>
       <div className="children-center grid-gap card-palette">
@@ -24,7 +53,7 @@ export function ColorPalette({ newNote, setNewNote }) {
             key={idx}
             className={`shade-ball ${item}`}
             onClick={() => {
-              setNewNote({ ...newNote, cardColor: shadeColors[idx] });
+              setNewColorOnCard(shadeColors[idx]);
             }}
           ></div>
         ))}

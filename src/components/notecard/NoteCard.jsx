@@ -12,15 +12,25 @@ import { moveNoteToTrash } from "utils/notes-utils";
 import { useLogin, useNotes } from "contexts";
 import { useNavigate } from "react-router-dom";
 
-export function NoteCard({ item }) {
+export function NoteCard({ item, setShowEditor }) {
   const [showPalette, setShowPalette] = useState(false);
+
   const { isLoggedIn } = useLogin();
   const { dispatchNotes } = useNotes();
   const navigate = useNavigate();
+
+  const changeCardColor = item => {
+    setShowPalette(prev => !prev);
+    dispatchNotes({
+      type: "EDIT_NOTE",
+      payload: item,
+    });
+  };
   return (
     <>
       <div
         className="card children-stacked p-rel"
+        key={item._id}
         style={{ backgroundColor: item.cardColor }}
       >
         <div className="card-badge">{item.priority}</div>
@@ -39,21 +49,39 @@ export function NoteCard({ item }) {
           ></p>
 
           <div className="d-flex gap-sm">
-            {item.labels.map(label => {
+            {item.labels?.map(label => {
               return <span className="text-sm card-label">{label}</span>;
             })}
           </div>
           <div className="text-sm">Created at: {item.createdAt}</div>
         </div>
-        {showPalette && <ColorPalette />}
+        {showPalette && (
+          <ColorPalette
+            isEdit={true}
+            setShowEditor={setShowEditor}
+            note={item}
+            setShowPalette={setShowPalette}
+          />
+        )}
         <div className="card-action children-center">
           <button
             className="btn btn-link"
-            onClick={() => setShowPalette(prev => !prev)}
+            onClick={() => {
+              changeCardColor(item);
+            }}
           >
             <MdPalette size={20} />
           </button>
-          <button className="btn btn-link">
+          <button
+            className="btn btn-link"
+            onClick={() => {
+              setShowEditor(true);
+              dispatchNotes({
+                type: "EDIT_NOTE",
+                payload: item,
+              });
+            }}
+          >
             <MdEdit size={20} />
           </button>
           <button className="btn btn-link">

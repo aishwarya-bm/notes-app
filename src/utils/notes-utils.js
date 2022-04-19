@@ -28,6 +28,7 @@ const getAllNotes = async (isLoggedIn, dispatchNotes, navigate) => {
     }
   } else {
     navigate("/signup");
+
     Toast({
       message: "Please login to continue.",
       type: "warning",
@@ -42,7 +43,7 @@ const createNote = async (
   navigate,
   setShowEditor
 ) => {
-  if (note.title === "") {
+  if (!note.title) {
     Toast({
       message: "Please add a title to your note",
       type: "error",
@@ -66,6 +67,7 @@ const createNote = async (
           payload: response.data.notes,
         });
         setShowEditor(false);
+
         Toast({
           message: "Added new note successfully",
           type: "success",
@@ -84,6 +86,7 @@ const createNote = async (
     }
   } else {
     navigate("/signup");
+
     Toast({
       message: "Please login to continue.",
       type: "warning",
@@ -105,6 +108,7 @@ const moveNoteToTrash = async (isLoggedIn, id, dispatchNotes, navigate) => {
           type: "UPDATE_NOTES",
           payload: { notes: response.data.notes, note_id: id },
         });
+
         Toast({
           message: "Note moved to trash.",
           type: "success",
@@ -123,6 +127,7 @@ const moveNoteToTrash = async (isLoggedIn, id, dispatchNotes, navigate) => {
     }
   } else {
     navigate("/signup");
+
     Toast({
       message: "Please login to continue.",
       type: "warning",
@@ -130,4 +135,57 @@ const moveNoteToTrash = async (isLoggedIn, id, dispatchNotes, navigate) => {
   }
 };
 
-export { getAllNotes, createNote, moveNoteToTrash };
+const modifyNote = async (
+  isLoggedIn,
+  note,
+  dispatchNotes,
+  navigate,
+  setShowEditor,
+  isOnlyColorChange
+) => {
+  if (isLoggedIn) {
+    const path = `/api/notes/${note._id}`;
+    try {
+      const response = await axios.post(
+        path,
+        { note },
+        {
+          headers: {
+            authorization: localStorage.getItem("userToken"),
+          },
+        }
+      );
+      if (response.status === 201) {
+        dispatchNotes({
+          type: "CREATE_NOTE",
+          payload: response.data.notes,
+        });
+        setShowEditor(false);
+        if (!isOnlyColorChange)
+          Toast({
+            message: "Modified note.",
+            type: "success",
+          });
+      } else {
+        Toast({
+          message: "Some error occured, please try again later",
+          type: "error",
+        });
+      }
+    } catch (err) {
+      Toast({
+        message: "Some error occured, please try again later",
+        type: "error",
+      });
+    }
+  } else {
+    navigate("/signup");
+
+    Toast({
+      message: "Please login to continue.",
+      type: "warning",
+    });
+  }
+};
+
+export { getAllNotes, createNote, moveNoteToTrash, modifyNote };

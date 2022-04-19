@@ -1,39 +1,56 @@
 import { ColorPalette, Editor } from "components";
 import { useState } from "react";
-import dayjs from "dayjs";
 
 import { LabelsModal } from "../labels-modal/LabelsModal";
 import "./addnote.css";
 import { useLogin, useNotes } from "contexts";
 import { useNavigate } from "react-router-dom";
-import { createNote } from "utils/notes-utils";
+import { createNote, modifyNote } from "utils/notes-utils";
 export function Addnote({ setShowEditor }) {
   const [showLabelsModal, setShowLabelsModal] = useState(false);
   const { isLoggedIn } = useLogin();
-  const { dispatchNotes } = useNotes();
+  const { note_editor, dispatchNotes } = useNotes();
   const navigate = useNavigate();
-  const formatDate = () => dayjs().format("YYYY-MM-DDTHH:mm:ssZ");
-  const [newNote, setNewNote] = useState({
-    title: "",
-    body: "",
-    priority: "medium",
-    labels: [],
-    createdAt: formatDate(),
-    cardColor: "white",
-  });
 
   const handleNewNoteChange = ({ target }) => {
-    setNewNote({ ...newNote, [target.name]: target.value });
+    dispatchNotes({
+      type: "SET_NOTE_EDITOR",
+      payload: { key: target.name, value: target.value },
+    });
   };
 
-  const setNoteBody = e => {
-    setNewNote({ ...newNote, ["body"]: e });
+  const saveNotes = () => {
+    if (note_editor._id) {
+      modifyNote(
+        isLoggedIn,
+        note_editor,
+        dispatchNotes,
+        navigate,
+        setShowEditor,
+        false
+      );
+    } else
+      createNote(
+        isLoggedIn,
+        note_editor,
+        dispatchNotes,
+        navigate,
+        setShowEditor
+      );
   };
+
+  const cancelSave = () => {
+    dispatchNotes({
+      type: "CLEAR_EDITOR",
+    });
+    setShowEditor(false);
+  };
+
   return (
     <>
       <div
         className="editor-component children-stacked"
-        style={{ backgroundColor: `${newNote.cardColor}` }}
+        style={{ backgroundColor: note_editor.cardColor }}
       >
         <div className="d-flex notes-details">
           <label>
@@ -41,7 +58,7 @@ export function Addnote({ setShowEditor }) {
             <input
               type="text"
               name="title"
-              value={newNote.title}
+              value={note_editor.title}
               onChange={e => handleNewNoteChange(e)}
             />
           </label>
@@ -49,7 +66,7 @@ export function Addnote({ setShowEditor }) {
             <b> Priority:</b> &nbsp;
             <select
               name="priority"
-              value={newNote.priority}
+              value={note_editor.priority}
               onChange={e => handleNewNoteChange(e)}
             >
               <option value="high">High</option>
@@ -62,47 +79,52 @@ export function Addnote({ setShowEditor }) {
             className="btn btn-link"
             onClick={() => setShowLabelsModal(true)}
           >
-            Add tags
+            {note_editor._id ? "Modify tags" : "Add tags"}
           </button>
         </div>
         <section className="quill-editor">
           <Editor
-            value={newNote.body}
-            setValue={e => setNewNote({ ...newNote, body: e })}
+            value={note_editor.body}
+            setValue={e =>
+              dispatchNotes({
+                type: "SET_NOTE_EDITOR",
+                payload: { key: "body", value: e },
+              })
+            }
           />
         </section>
-        <div className="palette">
-          <ColorPalette newNote={newNote} setNewNote={setNewNote} />
-        </div>
+        <section className="d-flex section-label-palette">
+          <div className="d-flex gap-sm note-selected-labels">
+            {note_editor?.labels?.map(i => {
+              return <span className="card-label"> {i} </span>;
+            })}
+          </div>
+          <div className="palette">
+            <ColorPalette />
+          </div>
+        </section>
+
         <div className="children-center">
           <button
             className="btn btn-primary"
             onClick={() => {
-              createNote(
-                isLoggedIn,
-                newNote,
-                dispatchNotes,
-                navigate,
-                setShowEditor
-              );
+              saveNotes();
             }}
           >
             Save
           </button>
           <button
             className="btn btn-light"
-            onClick={() => setShowEditor(false)}
+            onClick={() => {
+              cancelSave();
+            }}
           >
             Cancel
           </button>
         </div>
 
         {showLabelsModal && (
-          <LabelsModal
-            setShowLabelsModal={setShowLabelsModal}
-            newNote={newNote}
-            setNewNote={setNewNote}
-          />
+          <LabelsModal setShowLabelsModal={setShowLabelsModal} />
         )}
       </div>
     </>

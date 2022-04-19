@@ -1,18 +1,37 @@
-import { useEffect, useState } from "react";
 import "./labelsmodal.css";
-import { useNavigate } from "react-router-dom";
 import { MdNewLabel, MdLabel } from "react-icons/md";
+import { useNotes } from "contexts";
 
-export function LabelsModal({ setShowLabelsModal, newNote, setNewNote }) {
-  let { labels: note_labels } = newNote;
+export function LabelsModal({ setShowLabelsModal }) {
+  let { note_editor, dispatchNotes } = useNotes();
+  let { labels: note_labels } = note_editor;
   const labels = ["label1", "label2", "label3", "label4"];
 
-  const navigate = useNavigate();
+  const isLabelInNote = item =>
+    note_labels?.find(i => i === item) ? true : false;
 
-  const isLabelInNote = item => {
-    console.log(note_labels.find(i => i === item));
-    return note_labels.find(i => i === item) ? true : false;
+  const addLabels = item => {
+    note_labels?.push(item);
+    dispatchNotes({
+      type: "SET_NOTE_EDITOR",
+      payload: {
+        key: "labels",
+        value: note_labels,
+      },
+    });
   };
+
+  const removeLabels = item => {
+    note_labels = note_labels.filter(l => l !== item);
+    dispatchNotes({
+      type: "SET_NOTE_EDITOR",
+      payload: {
+        key: "labels",
+        value: note_labels,
+      },
+    });
+  };
+
   return (
     <>
       <div className="d-flex modal-container">
@@ -29,21 +48,19 @@ export function LabelsModal({ setShowLabelsModal, newNote, setNewNote }) {
                       <li className="d-flex label-items" key={idx}>
                         {isLabelInNote(item) ? (
                           <button
+                            title="click to unselect"
                             className="btn btn-link add-tag-btn label-selected"
                             onClick={() => {
-                              note_labels = note_labels.filter(l => l !== item);
-                              setNewNote({ ...newNote, labels: note_labels });
+                              removeLabels(item);
                             }}
                           >
                             <MdLabel size={25} />
                           </button>
                         ) : (
                           <button
+                            title="click to select"
                             className="btn btn-link add-tag-btn label-unselected"
-                            onClick={() => {
-                              note_labels.push(item);
-                              setNewNote({ ...newNote, labels: note_labels });
-                            }}
+                            onClick={() => addLabels(item)}
                           >
                             <MdNewLabel size={25} />
                           </button>
