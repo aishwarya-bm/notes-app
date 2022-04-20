@@ -94,9 +94,9 @@ const createNote = async (
   }
 };
 
-const moveNoteToTrash = async (isLoggedIn, id, dispatchNotes, navigate) => {
+const moveNoteToTrash = async (isLoggedIn, note, dispatchNotes, navigate) => {
   if (isLoggedIn) {
-    const path = `/api/notes/${id}`;
+    const path = `/api/notes/${note._id}`;
     try {
       const response = await axios.delete(path, {
         headers: {
@@ -105,8 +105,8 @@ const moveNoteToTrash = async (isLoggedIn, id, dispatchNotes, navigate) => {
       });
       if (response.status === 200) {
         dispatchNotes({
-          type: "UPDATE_NOTES",
-          payload: { notes: response.data.notes, note_id: id },
+          type: "MOVE_TO_TRASH",
+          payload: { notes: response.data.notes, note: note },
         });
 
         Toast({
@@ -229,26 +229,26 @@ const deleteNote = async (isLoggedIn, id, dispatchNotes, navigate) => {
   }
 };
 
-const restoreFromTrash = async (isLoggedIn, id, dispatchNotes, navigate) => {
+const restoreFromTrash = async (isLoggedIn, note, dispatchNotes, navigate) => {
   if (isLoggedIn) {
-    const path = `/api/archives/restore/${id}`;
+    const path = `/api/notes`;
     try {
       const response = await axios.post(
         path,
-        {},
+        { note },
         {
           headers: {
             authorization: localStorage.getItem("userToken"),
           },
         }
       );
-      if (response.status === 200) {
+      if (response.status === 201) {
         dispatchNotes({
-          type: "RESTORE_NOTE",
-          payload: { notes: response.data.notes, restore_id: id },
+          type: "RESTORE_FROM_TRASH",
+          payload: { notes: response.data.notes, restore_id: note._id },
         });
         Toast({
-          message: "Note deleted successfully",
+          message: "Note restored successfully",
           type: "success",
         });
       } else {

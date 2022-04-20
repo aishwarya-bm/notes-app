@@ -13,7 +13,14 @@ export default function notesReducer(state, { type, payload }) {
     case "CLEAR_EDITOR":
       return {
         ...state,
-        note_editor: {},
+        note_editor: {
+          title: "",
+          body: "",
+          priority: "medium",
+          labels: [],
+          createdAt: formatDate(),
+          cardColor: "white",
+        },
       };
 
     case "EDIT_NOTE": {
@@ -45,12 +52,19 @@ export default function notesReducer(state, { type, payload }) {
       };
     }
 
-    case "UPDATE_NOTES": {
-      state.trash.push(state.notes.find(item => item._id === payload.note_id));
+    case "MOVE_TO_TRASH": {
       return {
         ...state,
         notes: payload.notes,
-        note_editor: {},
+        note_editor: {
+          title: "",
+          body: "",
+          priority: "medium",
+          labels: [],
+          createdAt: formatDate(),
+          cardColor: "white",
+        },
+        trash: [...state.trash, payload.note],
       };
     }
 
@@ -87,7 +101,6 @@ export default function notesReducer(state, { type, payload }) {
     case "DELETE_FROM_ARCHIVE": {
       return {
         ...state,
-
         trash: [
           ...state.trash,
           state.archives.find(item => item._id === payload.note_id),
@@ -95,5 +108,42 @@ export default function notesReducer(state, { type, payload }) {
         archives: payload.archives,
       };
     }
+
+    case "ADD_NEW_TAG": {
+      return {
+        ...state,
+        tags: [...state.tags, payload],
+      };
+    }
+
+    case "DELETE_TAG": {
+      return {
+        ...state,
+        tags: state.tags.filter(item => item !== payload),
+        notes: state.notes.map(item => {
+          item.labels = item.labels.filter(label => label != payload);
+          return item;
+        }),
+        trash: state.trash.map(item => {
+          item.labels = item.labels.filter(label => label != payload);
+          return item;
+        }),
+        archives: state.archives.map(item => {
+          item.labels = item.labels.filter(label => label != payload);
+          return item;
+        }),
+      };
+    }
+
+    case "RESTORE_FROM_TRASH": {
+      return {
+        ...state,
+        notes: payload.notes,
+        trash: state.trash.filter(i => i._id !== payload.restore_id),
+      };
+    }
+
+    default:
+      return state;
   }
 }

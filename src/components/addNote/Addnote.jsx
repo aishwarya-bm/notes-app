@@ -80,7 +80,7 @@ export function Addnote({ setShowEditor }) {
             className="btn btn-link"
             onClick={() => setShowLabelsModal(true)}
           >
-            {_id ? "Modify tags" : "Add tags"}
+            Add Tags
           </button>
         </div>
         <section className="quill-editor">

@@ -71,7 +71,7 @@ export function Notes() {
             {notes?.map((item, idx) => {
               return (
                 <div key={"card" + idx}>
-                  <li key={"notes" + idx} className="list-no-bullet">
+                  <li className="list-no-bullet">
                     <NoteCard
                       item={item}
                       showEditor={showEditor}

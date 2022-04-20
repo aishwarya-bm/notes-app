@@ -62,8 +62,12 @@ export function NoteCard({ item, setShowEditor, isTrashPage, isArchivePage }) {
           ></p>
 
           <div className="d-flex gap-sm">
-            {labels?.map(label => {
-              return <span className="text-sm card-label">{label}</span>;
+            {item?.labels?.map((label, idx) => {
+              return (
+                <span className="text-sm card-label" key={"tag" + idx}>
+                  {label}
+                </span>
+              );
             })}
           </div>
           <div className="text-sm">Created at: {createdAt}</div>
@@ -91,7 +95,7 @@ export function NoteCard({ item, setShowEditor, isTrashPage, isArchivePage }) {
             <button
               className="btn btn-link"
               onClick={() => {
-                restoreFromTrash(isLoggedIn, _id, dispatchNotes, navigate);
+                restoreFromTrash(isLoggedIn, item, dispatchNotes, navigate);
               }}
             >
               <MdRestore size={20} />
@@ -146,7 +150,7 @@ export function NoteCard({ item, setShowEditor, isTrashPage, isArchivePage }) {
                   navigate
                 );
               }
-              return moveNoteToTrash(isLoggedIn, _id, dispatchNotes, navigate);
+              return moveNoteToTrash(isLoggedIn, item, dispatchNotes, navigate);
             }}
           >
             <MdDelete size={20} />

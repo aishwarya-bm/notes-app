@@ -1,11 +1,13 @@
 import "./labelsmodal.css";
-import { MdNewLabel, MdLabel } from "react-icons/md";
+import { MdNewLabel, MdLabel, MdDelete } from "react-icons/md";
 import { useNotes } from "contexts";
+import { useState } from "react";
+import { Toast } from "components";
 
-export function LabelsModal({ setShowLabelsModal }) {
-  let { note_editor, dispatchNotes } = useNotes();
+export function LabelsModal({ setShowLabelsModal, isTagPage }) {
+  let { note_editor, tags, dispatchNotes } = useNotes();
   let { labels: note_labels } = note_editor;
-  const labels = ["label1", "label2", "label3", "label4"];
+  const [tagName, setTagName] = useState("");
 
   const isLabelInNote = item =>
     note_labels?.find(i => i === item) ? true : false;
@@ -32,18 +34,31 @@ export function LabelsModal({ setShowLabelsModal }) {
     });
   };
 
+  const addNewTag = () => {
+    if (tagName) {
+      dispatchNotes({ type: "ADD_NEW_TAG", payload: tagName });
+      setTagName("");
+    }
+  };
+
+  const deleteTag = item => {
+    dispatchNotes({ type: "DELETE_TAG", payload: item });
+    Toast({
+      message: "This label will be removed from the notes as well.",
+      type: "warning",
+    });
+  };
+
   return (
     <>
       <div className="d-flex modal-container">
         <div className="modal children-stacked">
-          <>
-            <div className="modal-header d-flex">
-              <h5>Tags</h5>
-            </div>
+          <h5 className="text-center">Tags</h5>
+          {!isTagPage && (
             <div className="modal-body">
               <ul className="d-flex children-stacked grid-gap">
-                {labels &&
-                  labels?.map((item, idx) => {
+                {tags &&
+                  tags?.map((item, idx) => {
                     return (
                       <li className="d-flex label-items" key={idx}>
                         {isLabelInNote(item) ? (
@@ -71,12 +86,23 @@ export function LabelsModal({ setShowLabelsModal }) {
                   })}
               </ul>
             </div>
-          </>
+          )}
 
           <div className="d-flex children-center modal-actions grid-gap">
-            <input type="text" required />
+            <input
+              type="text"
+              required
+              value={tagName}
+              name="tag"
+              onChange={e => setTagName(e.target.value)}
+            />
             <div className="d-flex">
-              <button className="btn btn-primary modal-btn">Create</button>
+              <button
+                className="btn btn-primary modal-btn"
+                onClick={() => addNewTag()}
+              >
+                Create
+              </button>
               <button
                 className="btn btn-light modal-btn"
                 onClick={() => {

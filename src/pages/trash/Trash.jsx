@@ -26,11 +26,9 @@ export function Trash() {
             <div className="d-grid notes-list">
               {trash?.map((item, idx) => {
                 return (
-                  <>
-                    <div key={"trash" + idx}>
-                      <NoteCard item={item} isTrashPage={true} />
-                    </div>
-                  </>
+                  <div key={"trash" + idx}>
+                    <NoteCard item={item} isTrashPage={true} />
+                  </div>
                 );
               })}
             </div>
