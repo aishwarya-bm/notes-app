@@ -50,7 +50,7 @@ select{
 }
 
 .modal-container{
-    background-color: var(--modal-bg);
+    background-color: var(--light-black);
 }
 
 .modal{

@@ -5,9 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { LabelsModal } from "components/labels-modal/LabelsModal";
 export function Tags() {
-  const { tags, dispatchNotes } = useNotes();
-  const { isLoggedIn } = useLogin();
-  const navigate = useNavigate();
+  const { tags } = useNotes();
   const [showLabelsModal, setShowLabelsModal] = useState(false);
   return (
     <>

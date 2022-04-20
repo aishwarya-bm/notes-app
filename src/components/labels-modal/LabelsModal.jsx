@@ -1,5 +1,5 @@
 import "./labelsmodal.css";
-import { MdNewLabel, MdLabel, MdDelete } from "react-icons/md";
+import { MdNewLabel, MdLabel } from "react-icons/md";
 import { useNotes } from "contexts";
 import { useState } from "react";
 import { Toast } from "components";
@@ -38,6 +38,10 @@ export function LabelsModal({ setShowLabelsModal, isTagPage }) {
     if (tagName) {
       dispatchNotes({ type: "ADD_NEW_TAG", payload: tagName });
       setTagName("");
+      Toast({
+        message: "Tag created successfully.",
+        type: "success",
+      });
     }
   };
 
