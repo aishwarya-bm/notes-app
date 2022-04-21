@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useLogin } from "../../contexts";
-import { loginUser } from "../../contexts/login-context/login-utils";
+import { useLogin } from "contexts";
+import { loginUser } from "utils";
 import "./signup.css";
 export function Signin({ setIsSignUp }) {
   const [showPassword, setShowPassword] = useState(false);

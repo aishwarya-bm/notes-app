@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "contexts";
-import { createUser } from "contexts/login-context/login-utils";
+import { createUser } from "utils";
 import "./signup.css";
 
 export function Signup({ setIsSignUp }) {

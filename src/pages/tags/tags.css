@@ -1,0 +1,22 @@
+.tag-list{
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+.tag-card{
+    width: 200px;
+    height: 100px;
+    border-radius: 5px;
+    padding: 1rem;
+    background-color: var(--light-black);
+    color: white;
+}
+.tags-header{
+    justify-content: space-between;
+    padding-right: 1rem;
+}
+@media screen and (max-width:700px) {
+    .tag-list{
+        justify-content: center;
+        margin-bottom: 4rem;
+    }
+}

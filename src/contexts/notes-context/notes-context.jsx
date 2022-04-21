@@ -12,6 +12,7 @@ const NotesProvider = ({ children }) => {
     notes: [],
     archives: [],
     trash: [],
+    tags: ["home", "work", "daily", "other", "weekly"],
     note_editor: {
       title: "",
       body: "",
@@ -30,6 +31,7 @@ const NotesProvider = ({ children }) => {
           archives: stateNotes.archives,
           trash: stateNotes.trash,
           note_editor: stateNotes.note_editor,
+          tags: stateNotes.tags,
           dispatchNotes,
         }}
       >

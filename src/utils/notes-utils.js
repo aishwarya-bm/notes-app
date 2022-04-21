@@ -94,9 +94,9 @@ const createNote = async (
   }
 };
 
-const moveNoteToTrash = async (isLoggedIn, id, dispatchNotes, navigate) => {
+const moveNoteToTrash = async (isLoggedIn, note, dispatchNotes, navigate) => {
   if (isLoggedIn) {
-    const path = `/api/notes/${id}`;
+    const path = `/api/notes/${note._id}`;
     try {
       const response = await axios.delete(path, {
         headers: {
@@ -105,8 +105,8 @@ const moveNoteToTrash = async (isLoggedIn, id, dispatchNotes, navigate) => {
       });
       if (response.status === 200) {
         dispatchNotes({
-          type: "UPDATE_NOTES",
-          payload: { notes: response.data.notes, note_id: id },
+          type: "MOVE_TO_TRASH",
+          payload: { notes: response.data.notes, note: note },
         });
 
         Toast({
@@ -160,12 +160,14 @@ const modifyNote = async (
           type: "CREATE_NOTE",
           payload: response.data.notes,
         });
-        setShowEditor(false);
-        if (!isOnlyColorChange)
+
+        if (!isOnlyColorChange) {
+          setShowEditor(false);
           Toast({
             message: "Modified note.",
             type: "success",
           });
+        }
       } else {
         Toast({
           message: "Some error occured, please try again later",
@@ -188,4 +190,93 @@ const modifyNote = async (
   }
 };
 
-export { getAllNotes, createNote, moveNoteToTrash, modifyNote };
+const deleteNote = async (isLoggedIn, id, dispatchNotes, navigate) => {
+  if (isLoggedIn) {
+    const path = `/api/notes/${id}`;
+    try {
+      const response = await axios.delete(path, {
+        headers: {
+          authorization: localStorage.getItem("userToken"),
+        },
+      });
+      if (response.status === 200) {
+        dispatchNotes({
+          type: "DELETE_NOTE",
+          payload: { notes: response.data.notes, delete_id: id },
+        });
+        Toast({
+          message: "Note deleted successfully",
+          type: "success",
+        });
+      } else {
+        Toast({
+          message: "Some error occured, please try again later",
+          type: "error",
+        });
+      }
+    } catch (err) {
+      Toast({
+        message: "Some error occured, please try again later",
+        type: "error",
+      });
+    }
+  } else {
+    navigate("/signup");
+    Toast({
+      message: "Please login to continue.",
+      type: "warning",
+    });
+  }
+};
+
+const restoreFromTrash = async (isLoggedIn, note, dispatchNotes, navigate) => {
+  if (isLoggedIn) {
+    const path = `/api/notes`;
+    try {
+      const response = await axios.post(
+        path,
+        { note },
+        {
+          headers: {
+            authorization: localStorage.getItem("userToken"),
+          },
+        }
+      );
+      if (response.status === 201) {
+        dispatchNotes({
+          type: "RESTORE_FROM_TRASH",
+          payload: { notes: response.data.notes, restore_id: note._id },
+        });
+        Toast({
+          message: "Note restored successfully",
+          type: "success",
+        });
+      } else {
+        Toast({
+          message: "Some error occured, please try again later",
+          type: "error",
+        });
+      }
+    } catch (err) {
+      Toast({
+        message: "Some error occured, please try again later",
+        type: "error",
+      });
+    }
+  } else {
+    navigate("/signup");
+    Toast({
+      message: "Please login to continue.",
+      type: "warning",
+    });
+  }
+};
+
+export {
+  getAllNotes,
+  createNote,
+  moveNoteToTrash,
+  modifyNote,
+  deleteNote,
+  restoreFromTrash,
+};

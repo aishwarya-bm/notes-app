@@ -1,6 +1,5 @@
 import "./trash.css";
 import { Header, NoteCard, Sidenav } from "components";
-import { useState } from "react";
 import { useNotes } from "contexts";
 export function Trash() {
   const { trash } = useNotes();
@@ -27,11 +26,9 @@ export function Trash() {
             <div className="d-grid notes-list">
               {trash?.map((item, idx) => {
                 return (
-                  <>
-                    <div key={item._id}>
-                      <NoteCard item={item} />
-                    </div>
-                  </>
+                  <div key={"trash" + idx}>
+                    <NoteCard item={item} isTrashPage={true} />
+                  </div>
                 );
               })}
             </div>

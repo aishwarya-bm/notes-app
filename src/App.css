@@ -29,10 +29,6 @@
     background-color: var(--primary-color);
 }
 
-.btn{
-    box-shadow: none
-}
-
 select{
     padding: 0.5rem;
     font-size: 0.8rem;
@@ -54,7 +50,7 @@ select{
 }
 
 .modal-container{
-    background-color: var(--modal-bg);
+    background-color: var(--light-black);
 }
 
 .modal{

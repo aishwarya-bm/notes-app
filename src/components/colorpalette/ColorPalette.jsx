@@ -1,6 +1,6 @@
 import { useLogin, useNotes } from "contexts";
 import { useNavigate } from "react-router-dom";
-import { modifyNote } from "utils/notes-utils";
+import { modifyNote } from "utils";
 import "./colorpalette.css";
 export function ColorPalette({ isEdit, setShowEditor, note, setShowPalette }) {
   const { note_editor, dispatchNotes } = useNotes();

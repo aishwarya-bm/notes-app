@@ -5,7 +5,7 @@ import { LabelsModal } from "../labels-modal/LabelsModal";
 import "./addnote.css";
 import { useLogin, useNotes } from "contexts";
 import { useNavigate } from "react-router-dom";
-import { createNote, modifyNote } from "utils/notes-utils";
+import { createNote, modifyNote } from "utils";
 export function Addnote({ setShowEditor }) {
   const [showLabelsModal, setShowLabelsModal] = useState(false);
   const { isLoggedIn } = useLogin();
@@ -80,7 +80,7 @@ export function Addnote({ setShowEditor }) {
             className="btn btn-link"
             onClick={() => setShowLabelsModal(true)}
           >
-            {_id ? "Modify tags" : "Add tags"}
+            Add Tags
           </button>
         </div>
         <section className="quill-editor">

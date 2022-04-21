@@ -1,15 +1,21 @@
 import "./archives.css";
 import { Header, NoteCard, Sidenav } from "components";
-import { useState } from "react";
+import { useLogin, useNotes } from "contexts";
+import { getArchivedNotes } from "utils";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 export function Archives() {
-  const notes = [];
+  const { archives, dispatchNotes } = useNotes();
+  const { isLoggedIn } = useLogin();
+  const navigate = useNavigate();
+  useEffect(() => getArchivedNotes(isLoggedIn, dispatchNotes, navigate), []);
   return (
     <>
       <Header />
       <Sidenav />
       <div className="notes-container">
-        <h3 className="text-center">Archives - {notes.length}</h3>
-        {notes.length === 0 ? (
+        <h3 className="text-center">Archives - {archives.length}</h3>
+        {archives.length === 0 ? (
           <>
             <div className="not-found">
               <h5 className="text-center">
@@ -26,11 +32,11 @@ export function Archives() {
         ) : (
           <>
             <div className="d-grid notes-list">
-              {notes?.map((item, idx) => {
+              {archives?.map((item, idx) => {
                 return (
-                  <>
-                    <NoteCard item={item} />
-                  </>
+                  <div key={"archive" + idx}>
+                    <NoteCard item={item} isArchivePage={true} />
+                  </div>
                 );
               })}
             </div>

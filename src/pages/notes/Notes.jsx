@@ -70,15 +70,15 @@ export function Notes() {
           <ul className="d-grid notes-list">
             {notes?.map((item, idx) => {
               return (
-                <>
-                  <li key={idx} className="list-no-bullet">
+                <div key={"card" + idx}>
+                  <li className="list-no-bullet">
                     <NoteCard
                       item={item}
                       showEditor={showEditor}
                       setShowEditor={setShowEditor}
                     />
                   </li>
-                </>
+                </div>
               );
             })}
           </ul>
