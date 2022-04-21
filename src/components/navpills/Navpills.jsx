@@ -4,7 +4,7 @@ import { FaMoon } from "react-icons/fa";
 import "./navpills.css";
 import { useTheme } from "../../contexts/theme/theme-context";
 import { useLogin } from "contexts";
-import { signoutUser } from "contexts/login-context/login-utils";
+import { signoutUser } from "utils";
 
 export function Navpills() {
   const { theme, setTheme } = useTheme();

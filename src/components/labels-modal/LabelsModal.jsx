@@ -2,56 +2,12 @@ import "./labelsmodal.css";
 import { MdNewLabel, MdLabel } from "react-icons/md";
 import { useNotes } from "contexts";
 import { useState } from "react";
-import { Toast } from "components";
+import { addLabels, addNewTag, isLabelInNote, removeLabels } from "utils";
 
 export function LabelsModal({ setShowLabelsModal, isTagPage }) {
   let { note_editor, tags, dispatchNotes } = useNotes();
   let { labels: note_labels } = note_editor;
   const [tagName, setTagName] = useState("");
-
-  const isLabelInNote = item =>
-    note_labels?.find(i => i === item) ? true : false;
-
-  const addLabels = item => {
-    note_labels?.push(item);
-    dispatchNotes({
-      type: "SET_NOTE_EDITOR",
-      payload: {
-        key: "labels",
-        value: note_labels,
-      },
-    });
-  };
-
-  const removeLabels = item => {
-    note_labels = note_labels.filter(l => l !== item);
-    dispatchNotes({
-      type: "SET_NOTE_EDITOR",
-      payload: {
-        key: "labels",
-        value: note_labels,
-      },
-    });
-  };
-
-  const addNewTag = () => {
-    if (tagName) {
-      dispatchNotes({ type: "ADD_NEW_TAG", payload: tagName });
-      setTagName("");
-      Toast({
-        message: "Tag created successfully.",
-        type: "success",
-      });
-    }
-  };
-
-  const deleteTag = item => {
-    dispatchNotes({ type: "DELETE_TAG", payload: item });
-    Toast({
-      message: "This label will be removed from the notes as well.",
-      type: "warning",
-    });
-  };
 
   return (
     <>
@@ -65,12 +21,12 @@ export function LabelsModal({ setShowLabelsModal, isTagPage }) {
                   tags?.map((item, idx) => {
                     return (
                       <li className="d-flex label-items" key={idx}>
-                        {isLabelInNote(item) ? (
+                        {isLabelInNote(note_labels, item) ? (
                           <button
                             title="click to unselect"
                             className="btn btn-link add-tag-btn label-selected"
                             onClick={() => {
-                              removeLabels(item);
+                              removeLabels(item, note_labels, dispatchNotes);
                             }}
                           >
                             <MdLabel size={25} />
@@ -79,7 +35,9 @@ export function LabelsModal({ setShowLabelsModal, isTagPage }) {
                           <button
                             title="click to select"
                             className="btn btn-link add-tag-btn label-unselected"
-                            onClick={() => addLabels(item)}
+                            onClick={() =>
+                              addLabels(item, note_labels, dispatchNotes)
+                            }
                           >
                             <MdNewLabel size={25} />
                           </button>
@@ -103,7 +61,9 @@ export function LabelsModal({ setShowLabelsModal, isTagPage }) {
             <div className="d-flex">
               <button
                 className="btn btn-primary modal-btn"
-                onClick={() => addNewTag()}
+                onClick={() =>
+                  addNewTag(tagName, tags, dispatchNotes, setTagName)
+                }
               >
                 Create
               </button>

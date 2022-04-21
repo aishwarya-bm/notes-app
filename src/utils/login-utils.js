@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Toast } from "../../components";
+import { Toast } from "components";
 
 const isEmailValid = email => {
   const regex =

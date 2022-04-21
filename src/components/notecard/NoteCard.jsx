@@ -10,18 +10,16 @@ import {
 import { useState } from "react";
 import "./notecard.css";
 import { ColorPalette } from "components";
+import { useLogin, useNotes } from "contexts";
+import { useNavigate } from "react-router-dom";
 import {
   deleteNote,
   moveNoteToTrash,
   restoreFromTrash,
-} from "utils/notes-utils";
-import { useLogin, useNotes } from "contexts";
-import { useNavigate } from "react-router-dom";
-import {
   moveNoteToArchive,
   moveNoteToTrashFromArchive,
   restoreFromArchive,
-} from "utils/archive-utils";
+} from "utils";
 
 export function NoteCard({ item, setShowEditor, isTrashPage, isArchivePage }) {
   const [showPalette, setShowPalette] = useState(false);

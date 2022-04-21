@@ -1,7 +1,7 @@
 import "./archives.css";
 import { Header, NoteCard, Sidenav } from "components";
 import { useLogin, useNotes } from "contexts";
-import { getArchivedNotes } from "utils/archive-utils";
+import { getArchivedNotes } from "utils";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 export function Archives() {
