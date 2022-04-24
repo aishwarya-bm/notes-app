@@ -24,3 +24,9 @@ export {
   loginFailedActions,
   signoutUser,
 } from "utils/login-utils";
+export {
+  compose,
+  sortByDate,
+  filterByPriority,
+  filterByTags,
+} from "./filter-utils";

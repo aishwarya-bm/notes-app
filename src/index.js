@@ -5,7 +5,7 @@ import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "./contexts/theme/theme-context";
-import { LoginProvider, NotesProvider } from "contexts";
+import { FilterNotesProvider, LoginProvider, NotesProvider } from "contexts";
 
 // Call make Server
 makeServer();
@@ -16,7 +16,9 @@ ReactDOM.render(
       <ThemeProvider>
         <LoginProvider>
           <NotesProvider>
-            <App />
+            <FilterNotesProvider>
+              <App />
+            </FilterNotesProvider>
           </NotesProvider>
         </LoginProvider>
       </ThemeProvider>
