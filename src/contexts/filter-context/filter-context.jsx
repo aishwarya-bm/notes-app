@@ -10,6 +10,7 @@ const FilterNotesProvider = ({ children }) => {
     sortByDate: "",
     priority: "",
     tags: [],
+    isFilterApplied: false,
   });
 
   const { notes } = useNotes();

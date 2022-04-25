@@ -25,6 +25,7 @@ export function Notes() {
   const { filteredNotes, stateFilter } = useFilterNotes();
   const {
     sortByDate,
+    isFilterApplied,
     priority: filterPriority,
     tags: filterTags,
   } = stateFilter;
@@ -59,8 +60,7 @@ export function Notes() {
             <Search />
           </div>
         </div>
-        {(filterPriority !== "" ||
-          (filterTags !== [] && sortByDate !== "")) && (
+        {isFilterApplied && (
           <div className="children-center gap-sm filter-info">
             <MdOutlineInfo size={22} /> Filters are applied, clear them to see
             all data

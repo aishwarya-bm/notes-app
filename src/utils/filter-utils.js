@@ -33,10 +33,11 @@ const filterByPriority = (state, data) => {
 };
 
 const filterByTags = (state, data) => {
-  // return state.tags.length === 0
-  //   ? data
-  //   : data.filter(note => note.labels.some(label => state.tags.include(label)));
-  return data;
+  return state.tags.length === 0
+    ? data
+    : data.filter(note =>
+        note.labels.some(tag => state.tags.indexOf(tag) >= 0)
+      );
 };
 
 export { compose, sortByDate, filterByPriority, filterByTags };

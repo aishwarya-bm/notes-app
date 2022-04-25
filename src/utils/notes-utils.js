@@ -51,6 +51,7 @@ const createNote = async (
     return;
   }
   if (isLoggedIn) {
+    note.createdAt = new Date().toLocaleString();
     try {
       const response = await axios.post(
         "/api/notes",

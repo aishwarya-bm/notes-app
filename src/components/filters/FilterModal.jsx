@@ -18,7 +18,21 @@ export function FilterModal({ setShowFilterModal }) {
                     <li className="d-flex" key={"filter-tag" + idx}>
                       <span className="">
                         <label>
-                          <input type="checkbox" />
+                          <input
+                            type="checkbox"
+                            id={item}
+                            name={item}
+                            onChange={() => {
+                              dispatchFilter({
+                                type: "SET_TAG",
+                                payload: item,
+                              });
+                            }}
+                            checked={
+                              filterTags.find(t => t === item) ? true : false
+                            }
+                            value={item}
+                          />
                           {item}
                         </label>
                       </span>
@@ -36,10 +50,13 @@ export function FilterModal({ setShowFilterModal }) {
                       type="radio"
                       id="oldest"
                       name="oldest"
-                      value={sortByDate === "oldest"}
-                      onChange={
-                        () =>
-                          dispatchFilter({ type: "SET_DATE", payload: "low" }) // check payload to be sent here
+                      checked={sortByDate === "oldest"}
+                      value="oldest"
+                      onChange={() =>
+                        dispatchFilter({
+                          type: "SET_DATE",
+                          payload: "oldest",
+                        })
                       }
                     />
                     oldest
@@ -51,11 +68,11 @@ export function FilterModal({ setShowFilterModal }) {
                       type="radio"
                       id="latest"
                       name="latest"
-                      value={sortByDate === "latest"}
+                      value="latest"
+                      checked={sortByDate === "latest"}
                       onChange={() =>
-                        dispatchFilter({ type: "SET_DATE", payload: "low" })
+                        dispatchFilter({ type: "SET_DATE", payload: "latest" })
                       }
-                      // check payload to be sent here dispatchFilter({ type: "SET_DATE", payload: "low" }) // check payload to be sent here}
                     />
                     latest
                   </label>
