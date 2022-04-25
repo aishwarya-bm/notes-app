@@ -1,12 +1,14 @@
 import { useNotes } from "contexts";
 import { createContext, useContext, useReducer } from "react";
 import { compose, filterByPriority, filterByTags, sortByDate } from "utils";
+import { filterBySearchText } from "utils/filter-utils";
 import { filterReducer } from "./filter-reducer";
 
 const FilterNotessContext = createContext();
 
 const FilterNotesProvider = ({ children }) => {
   const [stateFilter, dispatchFilter] = useReducer(filterReducer, {
+    searchText: "",
     sortByDate: "",
     priority: "",
     tags: [],
@@ -18,7 +20,8 @@ const FilterNotesProvider = ({ children }) => {
     stateFilter,
     sortByDate,
     filterByPriority,
-    filterByTags
+    filterByTags,
+    filterBySearchText
   )(notes);
 
   return (

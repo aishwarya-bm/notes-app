@@ -40,4 +40,13 @@ const filterByTags = (state, data) => {
       );
 };
 
-export { compose, sortByDate, filterByPriority, filterByTags };
+const filterBySearchText = (state, data) =>
+  data.filter(item => item.title.includes(state.searchText));
+
+export {
+  compose,
+  sortByDate,
+  filterByPriority,
+  filterByTags,
+  filterBySearchText,
+};
