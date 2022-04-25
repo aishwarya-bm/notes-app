@@ -1,5 +1,5 @@
 import { useFilterNotes } from "contexts";
-
+import "./search.css";
 export function Search() {
   const { stateFilter, dispatchFilter } = useFilterNotes();
   return (
@@ -17,8 +17,7 @@ export function Search() {
           }
         />
         <button
-          className="btn btn-link nav-btn"
-          style={{ position: "absolute", right: 0, color: "black" }}
+          className="btn btn-link nav-btn clear-search"
           onClick={() => {
             dispatchFilter({
               type: "SET_SEARCH",
