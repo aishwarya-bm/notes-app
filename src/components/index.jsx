@@ -11,3 +11,4 @@ export { Addnote } from "./addNote/Addnote";
 export { NoteCard } from "./notecard/NoteCard";
 export { FilterModal } from "./filters/FilterModal";
 export { ColorPalette } from "./colorpalette/ColorPalette";
+export { LabelsModal } from "./labels-modal/LabelsModal";

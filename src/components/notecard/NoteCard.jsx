@@ -3,7 +3,6 @@ import {
   MdArchive,
   MdDelete,
   MdEdit,
-  MdOutlinePushPin,
   MdRestore,
   MdUnarchive,
 } from "react-icons/md";
@@ -43,14 +42,8 @@ export function NoteCard({ item, setShowEditor, isTrashPage, isArchivePage }) {
         style={{ backgroundColor: cardColor }}
       >
         <div className="card-badge">{priority}</div>
-
         <div className="card-header d-flex">
           <div className="card-title">{title} </div>
-          {!isTrashPage && !isArchivePage && (
-            <button className="btn btn-link">
-              <MdOutlinePushPin size={25} />
-            </button>
-          )}
         </div>
         <div className="card-content">
           <p

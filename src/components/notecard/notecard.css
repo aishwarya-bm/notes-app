@@ -1,16 +1,23 @@
 .card-badge{
     color: black;
-    top: 0px;  
-    left: 0px;
+    top: 0px;
+    left: unset;
+    right: 0px;
     background-color: var( --yellow-color);
-    border-bottom-right-radius: 10px;
-    border-top-left-radius: 5px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 5px;
 }
 
 .card-header{
     align-items: center;
     justify-content: space-between;
     padding-top: .75rem;
+}
+
+.card-title{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .card .btn-link{

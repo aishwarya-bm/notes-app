@@ -1,7 +1,7 @@
 import { ColorPalette, Editor } from "components";
 import { useState } from "react";
 
-import { LabelsModal } from "../labels-modal/LabelsModal";
+import { LabelsModal } from "components";
 import "./addnote.css";
 import { useLogin, useNotes } from "contexts";
 import { useNavigate } from "react-router-dom";

@@ -21,14 +21,9 @@ export function Notes() {
   const [showFilterModal, setShowFilterModal] = useState(false);
   const { isLoggedIn } = useLogin();
   const navigate = useNavigate();
-  const { notes, dispatchNotes } = useNotes();
+  const { dispatchNotes } = useNotes();
   const { filteredNotes, stateFilter } = useFilterNotes();
-  const {
-    sortByDate,
-    isFilterApplied,
-    priority: filterPriority,
-    tags: filterTags,
-  } = stateFilter;
+  const { isFilterApplied } = stateFilter;
 
   useEffect(() => getAllNotes(isLoggedIn, dispatchNotes, navigate), []);
   return (
