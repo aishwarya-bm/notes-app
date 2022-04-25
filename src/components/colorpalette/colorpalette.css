@@ -12,16 +12,18 @@
 }
 .card-shade-2{
     border-radius: 50%;
-    background-color: var(--pastel-shade-blue);
+    background-color: var(--pastel-shade-yellow);
 }
 .card-shade-3{
     border-radius: 50%;
     background-color: var(--pastel-shade-green);
 }
+
 .card-shade-4{
     border-radius: 50%;
-    background-color: var(--pastel-shade-yellow);
+    background-color: var(--pastel-shade-blue);
 }
+
 .card-shade-5{
     border-radius: 50%;
     background-color: var(--pastel-shade-red);

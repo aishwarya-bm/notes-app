@@ -14,9 +14,9 @@ export function ColorPalette({ isEdit, setShowEditor, note, setShowPalette }) {
 
   const shadeColors = [
     "var(--white-color)",
-    "var(--pastel-shade-blue)",
-    "var(--pastel-shade-green)",
     "var(--pastel-shade-yellow)",
+    "var(--pastel-shade-green)",
+    "var(--pastel-shade-blue)",
     "var(--pastel-shade-red)",
   ];
 

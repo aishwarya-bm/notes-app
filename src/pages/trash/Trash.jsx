@@ -15,7 +15,7 @@ export function Trash() {
               <h5 className="text-center">Your have no items in trash!</h5>
               <div className="d-flex children-center img-not-found">
                 <img
-                  src="https://cdn.iconscout.com/icon/premium/png-64-thumb/trash-delete-replace-block-disabled-1-51529.png"
+                  src="https://cdn.iconscout.com/icon/premium/png-64-thumb/recycle-bin-1525743-1293528.png"
                   alt="trash"
                 />
               </div>

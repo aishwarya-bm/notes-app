@@ -4,10 +4,10 @@
     --primary-dark: hsl(323, 73%, 52%);
     --primary-darker:hsl(323, 98%, 24%);
     --primary-transparent: hsla(327, 84%, 90%, 0.48);
-    --pastel-shade-yellow: hsl(51, 67%, 67%);
+    --pastel-shade-red:  hsl(0deg 100% 50% / 39%);
     --pastel-shade-green: hsl(156, 75%, 64%);
-    --pastel-shade-red: hsl(24, 88%, 67%);
-    --pastel-shade-blue: hsl(211, 100%, 72%);
+    --pastel-shade-yellow:  rgb(255 235 59 / 49%);
+    --pastel-shade-blue: hsl(211, 100%, 72%); 
     --dark-gray: hsl(0, 8%, 37%);
     --yellow-color: hsl(45, 100%, 51%);
     --light-black: hsl(0deg 10% 15% / 75%);

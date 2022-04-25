@@ -23,7 +23,7 @@ export function Archives() {
               </h5>
               <div className="d-flex children-center img-not-found">
                 <img
-                  src="https://cdn.iconscout.com/icon/premium/png-64-thumb/archive-5124885-4277584.png"
+                  src="https://cdn.iconscout.com/icon/premium/png-64-thumb/archive-4611695-3812312.png"
                   alt="archive"
                 />
               </div>

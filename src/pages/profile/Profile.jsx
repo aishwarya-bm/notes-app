@@ -14,9 +14,6 @@ export function Profile() {
             alt="page-under-construction"
           />
         </div>
-        <Link to="/" className="fa fa-solid btn btn-primary">
-          Go back to home
-        </Link>
       </section>
     </>
   );

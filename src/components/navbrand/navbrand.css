@@ -1,9 +1,8 @@
 .nav-title {
-    font-size: 2rem;
-    font-family: cursive;
+    font-size: 2rem;   
     font-weight: bold;
     color: var(--black-color);
-    font-family: 'Dancing Script';
+   
 }
 
 .app-icon{
