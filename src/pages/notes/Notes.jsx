@@ -66,7 +66,11 @@ export function Notes() {
         {filteredNotes?.length === 0 ? (
           <>
             <div className="not-found">
-              <h5 className="text-center">You have not added any notes yet!</h5>
+              <h5 className="text-center">
+                {isFilterApplied && filteredNotes.length === 0
+                  ? "No results for this filter"
+                  : "You have not added any notes yet!"}
+              </h5>
               <div className="d-flex children-center img-not-found">
                 <img
                   src="https://cdn.iconscout.com/icon/premium/png-128-thumb/blank-book-2923956-2445975.png"

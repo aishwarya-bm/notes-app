@@ -52,10 +52,10 @@ export function FilterModal({ setShowFilterModal }) {
                       name="oldest"
                       checked={sortByDate === "oldest"}
                       value="oldest"
-                      onChange={() =>
+                      onChange={e =>
                         dispatchFilter({
                           type: "SET_DATE",
-                          payload: "oldest",
+                          payload: e.target.value,
                         })
                       }
                     />
@@ -70,8 +70,11 @@ export function FilterModal({ setShowFilterModal }) {
                       name="latest"
                       value="latest"
                       checked={sortByDate === "latest"}
-                      onChange={() =>
-                        dispatchFilter({ type: "SET_DATE", payload: "latest" })
+                      onChange={e =>
+                        dispatchFilter({
+                          type: "SET_DATE",
+                          payload: e.target.value,
+                        })
                       }
                     />
                     latest
@@ -89,8 +92,12 @@ export function FilterModal({ setShowFilterModal }) {
                       id="low"
                       name="low"
                       checked={priority === "low"}
-                      onChange={() =>
-                        dispatchFilter({ type: "SET_PRIORITY", payload: "low" })
+                      value="low"
+                      onChange={e =>
+                        dispatchFilter({
+                          type: "SET_PRIORITY",
+                          payload: e.target.value,
+                        })
                       }
                     />
                     low
@@ -103,10 +110,11 @@ export function FilterModal({ setShowFilterModal }) {
                       id="medium"
                       name="medium"
                       checked={priority === "medium"}
-                      onChange={() =>
+                      value="medium"
+                      onChange={e =>
                         dispatchFilter({
                           type: "SET_PRIORITY",
-                          payload: "medium",
+                          payload: e.target.value,
                         })
                       }
                     />
@@ -120,10 +128,11 @@ export function FilterModal({ setShowFilterModal }) {
                       id="high"
                       name="high"
                       checked={priority === "high"}
-                      onChange={() =>
+                      value="high"
+                      onChange={e =>
                         dispatchFilter({
                           type: "SET_PRIORITY",
-                          payload: "high",
+                          payload: e.target.value,
                         })
                       }
                     />
