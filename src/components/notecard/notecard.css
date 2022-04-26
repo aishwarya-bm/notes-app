@@ -18,6 +18,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    font-weight: 500;
 }
 
 .card .btn-link{
@@ -31,8 +32,8 @@
 }
 
 .card .btn-link:hover{
-    background-color: var(--primary-color);
-    color: var(--black-color);
+    background-color: var(--primary-dark);
+    color: var(--white-color);
     border-radius: 50%;
 }
 
@@ -40,4 +41,22 @@
     background-color: var(--grey-bg);
     padding: .15rem .3rem;
     border-radius: 10px;
+}
+
+.note-desc{
+    padding-left: 1rem;
+    margin-bottom: .5rem;
+}
+
+.info-created{
+    font-family: monospace;
+    margin-top: 0.5rem;
+}
+
+.note-actions{
+    justify-content: space-evenly;
+}
+
+.note-actions .btn{
+    padding: .5rem;
 }

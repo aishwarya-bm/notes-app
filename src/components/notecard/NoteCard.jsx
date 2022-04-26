@@ -48,10 +48,12 @@ export function NoteCard({
       >
         <div className="card-badge">{priority}</div>
         <div className="card-header d-flex">
-          <div className="card-title">{title} </div>
+          <div className="card-title">{title}</div>
         </div>
+
         <div className="card-content">
           <p
+            className="note-desc"
             dangerouslySetInnerHTML={{
               __html: body,
             }}
@@ -66,7 +68,7 @@ export function NoteCard({
               );
             })}
           </div>
-          <div className="text-sm">Created at: {createdAt}</div>
+          <div className="text-sm info-created">Created at: {createdAt}</div>
         </div>
         {showPalette && (
           <ColorPalette
@@ -76,7 +78,7 @@ export function NoteCard({
             setShowPalette={setShowPalette}
           />
         )}
-        <div className="card-action children-center">
+        <div className="card-action d-flex note-actions">
           {!isTrashPage && !isArchivePage && (
             <button
               className="btn btn-link"
