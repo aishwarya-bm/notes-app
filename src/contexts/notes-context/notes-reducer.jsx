@@ -18,7 +18,7 @@ export default function notesReducer(state, { type, payload }) {
           body: "",
           priority: "medium",
           labels: [],
-          createdAt: formatDate(),
+          createdAt: "",
           cardColor: "white",
         },
       };
@@ -46,7 +46,7 @@ export default function notesReducer(state, { type, payload }) {
           body: "",
           priority: "medium",
           labels: [],
-          createdAt: formatDate(),
+          createdAt: "",
           cardColor: "white",
         },
       };
@@ -56,14 +56,6 @@ export default function notesReducer(state, { type, payload }) {
       return {
         ...state,
         notes: payload.notes,
-        note_editor: {
-          title: "",
-          body: "",
-          priority: "medium",
-          labels: [],
-          createdAt: formatDate(),
-          cardColor: "white",
-        },
         trash: [...state.trash, payload.note],
       };
     }

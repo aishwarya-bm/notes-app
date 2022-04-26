@@ -1,0 +1,9 @@
+.clear-search{
+    position: absolute; 
+    right: 0; 
+    color: var(--black-color)
+}
+
+.clear-search:hover{
+    background-color: transparent;
+}

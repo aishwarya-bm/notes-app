@@ -4,8 +4,7 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "./contexts/theme/theme-context";
-import { LoginProvider, NotesProvider } from "contexts";
+import { FilterNotesProvider, LoginProvider, NotesProvider } from "contexts";
 
 // Call make Server
 makeServer();
@@ -13,13 +12,13 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ThemeProvider>
-        <LoginProvider>
-          <NotesProvider>
+      <LoginProvider>
+        <NotesProvider>
+          <FilterNotesProvider>
             <App />
-          </NotesProvider>
-        </LoginProvider>
-      </ThemeProvider>
+          </FilterNotesProvider>
+        </NotesProvider>
+      </LoginProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

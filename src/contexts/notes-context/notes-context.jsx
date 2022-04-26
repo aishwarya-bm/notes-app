@@ -7,7 +7,6 @@ import dayjs from "dayjs";
 const NotesContext = createContext();
 
 const NotesProvider = ({ children }) => {
-  const formatDate = () => dayjs().format("YYYY-MM-DDTHH:mm:ssZ");
   const [stateNotes, dispatchNotes] = useReducer(notesReducer, {
     notes: [],
     archives: [],
@@ -18,7 +17,7 @@ const NotesProvider = ({ children }) => {
       body: "",
       priority: "medium",
       labels: [],
-      createdAt: formatDate(),
+      createdAt: "",
       cardColor: "white",
     },
   });

@@ -1,7 +1,7 @@
 import { ColorPalette, Editor } from "components";
 import { useState } from "react";
 
-import { LabelsModal } from "../labels-modal/LabelsModal";
+import { LabelsModal } from "components";
 import "./addnote.css";
 import { useLogin, useNotes } from "contexts";
 import { useNavigate } from "react-router-dom";
@@ -96,8 +96,13 @@ export function Addnote({ setShowEditor }) {
         </section>
         <section className="d-flex section-label-palette">
           <div className="d-flex gap-sm note-selected-labels">
-            {note_editor?.labels?.map(i => {
-              return <span className="card-label"> {i} </span>;
+            {note_editor?.labels?.map((i, idx) => {
+              return (
+                <span className="card-label" key={"add-note" + idx}>
+                  {" "}
+                  {i}{" "}
+                </span>
+              );
             })}
           </div>
           <div className="palette">

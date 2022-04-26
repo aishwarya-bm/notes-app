@@ -7,20 +7,23 @@ import {
   Sidenav,
 } from "components";
 import "./notes.css";
-import { MdAdd } from "react-icons/md";
+import { MdAdd, MdOutlineInfo } from "react-icons/md";
 import { useState } from "react";
 import { FcFilledFilter } from "react-icons/fc";
 import { useEffect } from "react";
 import { getAllNotes } from "utils/notes-utils";
 import { useLogin, useNotes } from "contexts";
 import { useNavigate } from "react-router-dom";
+import { useFilterNotes } from "contexts/filter-context/filter-context";
 
 export function Notes() {
   const [showEditor, setShowEditor] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
   const { isLoggedIn } = useLogin();
   const navigate = useNavigate();
-  const { notes, dispatchNotes } = useNotes();
+  const { dispatchNotes } = useNotes();
+  const { filteredNotes, stateFilter } = useFilterNotes();
+  const { isFilterApplied } = stateFilter;
 
   useEffect(() => getAllNotes(isLoggedIn, dispatchNotes, navigate), []);
   return (
@@ -52,12 +55,22 @@ export function Notes() {
             <Search />
           </div>
         </div>
+        {isFilterApplied && (
+          <div className="children-center gap-sm filter-info">
+            <MdOutlineInfo size={22} /> Filters are applied, clear them to see
+            all data
+          </div>
+        )}
         {showEditor && <Addnote setShowEditor={setShowEditor} />}
 
-        {notes.length === 0 ? (
+        {filteredNotes?.length === 0 ? (
           <>
             <div className="not-found">
-              <h5 className="text-center">You have not added any notes yet!</h5>
+              <h5 className="text-center">
+                {isFilterApplied && filteredNotes.length === 0
+                  ? "No results for this filter"
+                  : "You have not added any notes yet!"}
+              </h5>
               <div className="d-flex children-center img-not-found">
                 <img
                   src="https://cdn.iconscout.com/icon/premium/png-128-thumb/blank-book-2923956-2445975.png"
@@ -68,7 +81,7 @@ export function Notes() {
           </>
         ) : (
           <ul className="d-grid notes-list">
-            {notes?.map((item, idx) => {
+            {filteredNotes?.map((item, idx) => {
               return (
                 <div key={"card" + idx}>
                   <li className="list-no-bullet">

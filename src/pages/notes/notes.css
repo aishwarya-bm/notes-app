@@ -20,8 +20,14 @@
     flex-wrap: wrap;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     justify-items: center;
-    justify-content: center;
     column-gap: 1rem;
+}
+
+.filter-info{
+    text-align: center;
+    font-size: .85rem;
+    color: var(--toastify-color-info);
+    font-weight: bold;
 }
 
 
