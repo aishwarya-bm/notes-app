@@ -5,7 +5,7 @@ import "./editor.css";
 export function Editor(props) {
   const { value, setValue } = props;
   const formats = [
-    "header",
+    // "header",
     "font",
     "size",
     "bold",
@@ -23,7 +23,6 @@ export function Editor(props) {
 
   const modules = {
     toolbar: [
-      [{ header: "1" }, { header: "2" }, { font: [] }],
       [{ size: [] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
       [
@@ -33,7 +32,6 @@ export function Editor(props) {
         { indent: "+1" },
       ],
       ["link", "image", "video"],
-      ["clean"],
     ],
     clipboard: {
       // toggle to add extra line breaks when pasting HTML:

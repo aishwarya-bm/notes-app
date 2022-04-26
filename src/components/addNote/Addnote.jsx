@@ -10,7 +10,7 @@ export function Addnote({ setShowEditor }) {
   const [showLabelsModal, setShowLabelsModal] = useState(false);
   const { isLoggedIn } = useLogin();
   const { note_editor, dispatchNotes } = useNotes();
-  const { _id, title, cardColor, priority, body } = note_editor;
+  const { _id, title, cardColor, priority, body, labels } = note_editor;
   const navigate = useNavigate();
 
   const handleNewNoteChange = ({ target }) => {
@@ -96,11 +96,10 @@ export function Addnote({ setShowEditor }) {
         </section>
         <section className="d-flex section-label-palette">
           <div className="d-flex gap-sm note-selected-labels">
-            {note_editor?.labels?.map((i, idx) => {
+            {labels?.map((label, idx) => {
               return (
                 <span className="card-label" key={"add-note" + idx}>
-                  {" "}
-                  {i}{" "}
+                  {label}
                 </span>
               );
             })}

@@ -1,7 +1,12 @@
-import dayjs from "dayjs";
-
-const formatDate = () => dayjs().format("YYYY-MM-DDTHH:mm:ssZ");
 export default function notesReducer(state, { type, payload }) {
+  const defaultNotes = {
+    title: "",
+    body: "",
+    priority: "medium",
+    labels: [],
+    createdAt: "",
+    cardColor: "white",
+  };
   switch (type) {
     case "SET_NOTE_EDITOR": {
       return {
@@ -13,20 +18,23 @@ export default function notesReducer(state, { type, payload }) {
     case "CLEAR_EDITOR":
       return {
         ...state,
-        note_editor: {
-          title: "",
-          body: "",
-          priority: "medium",
-          labels: [],
-          createdAt: "",
-          cardColor: "white",
-        },
+        note_editor: defaultNotes,
       };
 
     case "EDIT_NOTE": {
       return {
         ...state,
         note_editor: payload,
+      };
+    }
+
+    case "SET_NOTE_TAG": {
+      return {
+        ...state,
+        note_editor: {
+          ...state.note_editor,
+          labels: [...state.note_editor.labels, payload],
+        },
       };
     }
 
@@ -41,14 +49,7 @@ export default function notesReducer(state, { type, payload }) {
       return {
         ...state,
         notes: payload,
-        note_editor: {
-          title: "",
-          body: "",
-          priority: "medium",
-          labels: [],
-          createdAt: "",
-          cardColor: "white",
-        },
+        note_editor: defaultNotes,
       };
     }
 

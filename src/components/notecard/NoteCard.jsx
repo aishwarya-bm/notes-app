@@ -20,9 +20,14 @@ import {
   restoreFromArchive,
 } from "utils";
 
-export function NoteCard({ item, setShowEditor, isTrashPage, isArchivePage }) {
+export function NoteCard({
+  noteItem,
+  setShowEditor,
+  isTrashPage,
+  isArchivePage,
+}) {
   const [showPalette, setShowPalette] = useState(false);
-  const { _id, title, cardColor, priority, body, labels, createdAt } = item;
+  const { _id, title, cardColor, priority, body, labels, createdAt } = noteItem;
   const { isLoggedIn } = useLogin();
   const { dispatchNotes } = useNotes();
   const navigate = useNavigate();
@@ -43,17 +48,19 @@ export function NoteCard({ item, setShowEditor, isTrashPage, isArchivePage }) {
       >
         <div className="card-badge">{priority}</div>
         <div className="card-header d-flex">
-          <div className="card-title">{title} </div>
+          <div className="card-title">{title}</div>
         </div>
+
         <div className="card-content">
           <p
+            className="note-desc"
             dangerouslySetInnerHTML={{
               __html: body,
             }}
           ></p>
 
           <div className="d-flex gap-sm">
-            {item?.labels?.map((label, idx) => {
+            {noteItem?.labels?.map((label, idx) => {
               return (
                 <span className="text-sm card-label" key={"tag" + idx}>
                   {label}
@@ -61,22 +68,22 @@ export function NoteCard({ item, setShowEditor, isTrashPage, isArchivePage }) {
               );
             })}
           </div>
-          <div className="text-sm">Created at: {createdAt}</div>
+          <div className="text-sm info-created">Created at: {createdAt}</div>
         </div>
         {showPalette && (
           <ColorPalette
             isEdit={true}
             setShowEditor={setShowEditor}
-            note={item}
+            note={noteItem}
             setShowPalette={setShowPalette}
           />
         )}
-        <div className="card-action children-center">
+        <div className="card-action d-flex note-actions">
           {!isTrashPage && !isArchivePage && (
             <button
               className="btn btn-link"
               onClick={() => {
-                changeCardColor(item);
+                changeCardColor(noteItem);
               }}
             >
               <MdPalette size={20} />
@@ -86,7 +93,7 @@ export function NoteCard({ item, setShowEditor, isTrashPage, isArchivePage }) {
             <button
               className="btn btn-link"
               onClick={() => {
-                restoreFromTrash(isLoggedIn, item, dispatchNotes, navigate);
+                restoreFromTrash(isLoggedIn, noteItem, dispatchNotes, navigate);
               }}
             >
               <MdRestore size={20} />
@@ -99,7 +106,7 @@ export function NoteCard({ item, setShowEditor, isTrashPage, isArchivePage }) {
                   setShowEditor(true);
                   dispatchNotes({
                     type: "EDIT_NOTE",
-                    payload: item,
+                    payload: noteItem,
                   });
                 }}
               >
@@ -121,7 +128,12 @@ export function NoteCard({ item, setShowEditor, isTrashPage, isArchivePage }) {
               <button
                 className="btn btn-link"
                 onClick={() =>
-                  moveNoteToArchive(isLoggedIn, item, dispatchNotes, navigate)
+                  moveNoteToArchive(
+                    isLoggedIn,
+                    noteItem,
+                    dispatchNotes,
+                    navigate
+                  )
                 }
               >
                 <MdArchive size={20} />
@@ -141,7 +153,12 @@ export function NoteCard({ item, setShowEditor, isTrashPage, isArchivePage }) {
                   navigate
                 );
               }
-              return moveNoteToTrash(isLoggedIn, item, dispatchNotes, navigate);
+              return moveNoteToTrash(
+                isLoggedIn,
+                noteItem,
+                dispatchNotes,
+                navigate
+              );
             }}
           >
             <MdDelete size={20} />

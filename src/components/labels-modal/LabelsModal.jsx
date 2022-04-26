@@ -35,9 +35,7 @@ export function LabelsModal({ setShowLabelsModal, isTagPage }) {
                           <button
                             title="click to select"
                             className="btn btn-link add-tag-btn label-unselected"
-                            onClick={() =>
-                              addLabels(item, note_labels, dispatchNotes)
-                            }
+                            onClick={() => addLabels(item, dispatchNotes)}
                           >
                             <MdNewLabel size={25} />
                           </button>
