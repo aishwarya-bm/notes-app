@@ -3,14 +3,10 @@ import { Toast } from "components";
 const isLabelInNote = (note_labels, item) =>
   note_labels?.find(i => i === item) ? true : false;
 
-const addLabels = (item, note_labels, dispatchNotes) => {
-  note_labels?.push(item);
+const addLabels = (item, dispatchNotes) => {
   dispatchNotes({
-    type: "SET_NOTE_EDITOR",
-    payload: {
-      key: "labels",
-      value: note_labels,
-    },
+    type: "SET_NOTE_TAG",
+    payload: item,
   });
 };
 

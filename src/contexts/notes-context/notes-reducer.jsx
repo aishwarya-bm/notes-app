@@ -30,6 +30,16 @@ export default function notesReducer(state, { type, payload }) {
       };
     }
 
+    case "SET_NOTE_TAG": {
+      return {
+        ...state,
+        note_editor: {
+          ...state.note_editor,
+          labels: [...state.note_editor.labels, payload],
+        },
+      };
+    }
+
     case "GET_ALL_NOTES": {
       return {
         ...state,

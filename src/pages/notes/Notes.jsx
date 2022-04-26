@@ -81,12 +81,12 @@ export function Notes() {
           </>
         ) : (
           <ul className="d-grid notes-list">
-            {filteredNotes?.map((item, idx) => {
+            {filteredNotes?.map((note, idx) => {
               return (
                 <div key={"card" + idx}>
                   <li className="list-no-bullet">
                     <NoteCard
-                      item={item}
+                      noteItem={note}
                       showEditor={showEditor}
                       setShowEditor={setShowEditor}
                     />
