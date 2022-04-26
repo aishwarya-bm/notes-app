@@ -29,7 +29,9 @@ export function FilterModal({ setShowFilterModal }) {
                               });
                             }}
                             checked={
-                              filterTags.find(t => t === item) ? true : false
+                              filterTags.find(filterTag => filterTag === item)
+                                ? true
+                                : false
                             }
                             value={item}
                           />

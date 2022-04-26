@@ -1,4 +1,11 @@
 export const filterReducer = (state, action) => {
+  const defaultState = {
+    sortByDate: "",
+    priority: "",
+    tags: [],
+    isFilterApplied: false,
+    searchText: "",
+  };
   switch (action.type) {
     case "SET_PRIORITY":
       return { ...state, priority: action.payload, isFilterApplied: true };
@@ -17,13 +24,7 @@ export const filterReducer = (state, action) => {
         : [...state.tags, action.payload];
       return { ...state, tags: newTag, isFilterApplied: true };
     case "CLEAR_FILTER":
-      return {
-        sortByDate: "",
-        priority: "",
-        tags: [],
-        isFilterApplied: false,
-        searchText: "",
-      };
+      return defaultState;
     default:
       return state;
   }
