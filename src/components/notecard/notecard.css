@@ -21,6 +21,11 @@
     font-weight: 500;
 }
 
+.card-title:hover{
+    text-overflow: unset;
+    white-space: pre-wrap;
+}
+
 .card .btn-link{
     color: var(--primary-dark);
     margin-top: 0;
