@@ -58,8 +58,9 @@ export function NoteCard({
               __html: body,
             }}
           ></p>
-
-          <div className="d-flex gap-sm">
+        </div>
+        <div className="notecard-details">
+          <div className="d-flex gap-sm notecard-labels">
             {noteItem?.labels?.map((label, idx) => {
               return (
                 <span className="text-sm card-label" key={"tag" + idx}>
@@ -70,6 +71,7 @@ export function NoteCard({
           </div>
           <div className="text-sm info-created">Created at: {createdAt}</div>
         </div>
+
         {showPalette && (
           <ColorPalette
             isEdit={true}
