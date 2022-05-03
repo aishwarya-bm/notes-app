@@ -27,7 +27,7 @@ export function Trash() {
               {trash?.map((item, idx) => {
                 return (
                   <div key={"trash" + idx}>
-                    <NoteCard item={item} isTrashPage={true} />
+                    <NoteCard noteItem={item} isTrashPage={true} />
                   </div>
                 );
               })}

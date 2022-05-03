@@ -1,8 +1,11 @@
+import { Header, Sidenav } from "components";
 import { Link } from "react-router-dom";
 
 export function Error() {
   return (
     <>
+    <Header/>
+    <Sidenav/>
       <section className="text-center not-found">
         <h4>Sorry this page is not found!</h4>
         <div className="d-flex children-center img-not-found">

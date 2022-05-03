@@ -35,7 +35,7 @@ export function Archives() {
               {archives?.map((item, idx) => {
                 return (
                   <div key={"archive" + idx}>
-                    <NoteCard item={item} isArchivePage={true} />
+                    <NoteCard noteItem={item} isArchivePage={true} />
                   </div>
                 );
               })}

@@ -21,6 +21,11 @@
     font-weight: 500;
 }
 
+.card-title:hover{
+    text-overflow: unset;
+    white-space: pre-wrap;
+}
+
 .card .btn-link{
     color: var(--primary-dark);
     margin-top: 0;
@@ -29,6 +34,9 @@
 
 .card .card-content{
     padding-bottom: 0;
+    overflow-y: auto;
+    height: 100px;
+    border-top: 1px solid var(--yellow-color);
 }
 
 .card .btn-link:hover{
@@ -53,10 +61,31 @@
     margin-top: 0.5rem;
 }
 
+.notecard-details{
+    padding-left: 1rem;
+    padding-top: .5rem;
+}
+
 .note-actions{
     justify-content: space-evenly;
 }
 
 .note-actions .btn{
     padding: .5rem;
+}
+
+.notecard-labels{
+    flex-wrap: wrap;
+}
+
+.card-content::-webkit-scrollbar {
+    width: 0.3rem;
+}
+
+.card-content::-webkit-scrollbar-track {
+    background-color: var(--grey-bg);
+}
+
+.card-content::-webkit-scrollbar-thumb {
+    background-color: var(--primary-dark);
 }
