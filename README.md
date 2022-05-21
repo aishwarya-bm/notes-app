@@ -1,5 +1,5 @@
 # Slate
-========
+--------
 
 Slate is a note-taking app. This app will help you in making your notes and help you organize your day and make it more efficient.
 
