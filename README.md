@@ -47,7 +47,7 @@ Slate is a note-taking app. This app will help you in making your notes and help
 -   npm install
 -   npm start
 
-[](https://github.com/aishwarya-bm/notes-app/README.md#screenshots)Screenshots
+(https://github.com/aishwarya-bm/notes-app/README.md#screenshots)Screenshots
 ----------------------------------------------------------------------------------
 
 -   Home page
@@ -57,10 +57,6 @@ Slate is a note-taking app. This app will help you in making your notes and help
 -   Login
 
 [![image](https://user-images.githubusercontent.com/66695068/169647999-d33a6777-b90c-4301-acee-cb46a862e3b1.PNG)]
-
--   Responsive pages
-
-[![image](https://user-images.githubusercontent.com/43262505/162235025-5825f970-4afc-4f44-a2f9-140b76fc6a32.png)](https://user-images.githubusercontent.com/43262505/162235025-5825f970-4afc-4f44-a2f9-140b76fc6a32.png) [![image](https://user-images.githubusercontent.com/43262505/162235193-e59c4b44-a3ab-472d-a266-577ded0e703b.png)](https://user-images.githubusercontent.com/43262505/162235193-e59c4b44-a3ab-472d-a266-577ded0e703b.png)
 
 -   Note page
 
