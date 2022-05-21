@@ -52,7 +52,7 @@ Slate is a note-taking app. This app will help you in making your notes and help
 
 -   Home page
 
-![jome](https://user-images.githubusercontent.com/66695068/169647770-dad03f04-2c50-4089-94c1-f7eea6364be0.PNG)
+![home](https://user-images.githubusercontent.com/66695068/169647770-dad03f04-2c50-4089-94c1-f7eea6364be0.PNG)
 
 -   Login
 
@@ -60,7 +60,7 @@ Slate is a note-taking app. This app will help you in making your notes and help
 
 -   Notes page
 
-![notes](https://user-images.githubusercontent.com/66695068/169647886-e9817ff6-10b3-452a-9678-eed05b4e6021.PNG)]
+![notes](https://user-images.githubusercontent.com/66695068/169647886-e9817ff6-10b3-452a-9678-eed05b4e6021.PNG)
 
 -   Archive page
 
